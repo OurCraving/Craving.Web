@@ -1,0 +1,495 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7CD9B530-70AB-49E4-BC03-4AD8DF4B2C87}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CravingConnect.Web</RootNamespace>
+    <AssemblyName>CravingConnect.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".build\browserify.json" />
+    <Content Include=".build\concat-vendor\concat.angular.json" />
+    <Content Include=".build\concat-vendor\concat.core.json" />
+    <Content Include=".build\concat-vendor\concat.css.json" />
+    <Content Include=".build\concat-vendor\concat.forms.json" />
+    <Content Include=".build\concat-vendor\concat.media.json" />
+    <Content Include=".build\concat.json" />
+    <Content Include=".build\copy-vendor\copy.angular.json" />
+    <Content Include=".build\copy-vendor\copy.core.json" />
+    <Content Include=".build\copy-vendor\copy.css.json" />
+    <Content Include=".build\copy-vendor\copy.fonts.json" />
+    <Content Include=".build\copy-vendor\copy.forms.json" />
+    <Content Include=".build\copy-vendor\copy.maps.google.json" />
+    <Content Include=".build\copy-vendor\copy.media.json" />
+    <Content Include=".build\copy.json" />
+    <Content Include=".build\dist.json" />
+    <Content Include=".build\rename.json" />
+    <Content Include="Gulpfile.js" />
+    <Content Include="lib\grunt\package.json" />
+    <Content Include="lib\gulp\package.json" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-arrows.eot" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-arrows.ttf" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-arrows.woff" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-clothing.eot" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-clothing.ttf" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-clothing.woff" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-emotions.eot" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-emotions.ttf" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-emotions.woff" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-food.eot" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-food.ttf" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-food.woff" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-general.eot" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-general.ttf" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-general.woff" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-household.eot" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-household.ttf" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-household.woff" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-medical-science.eot" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-medical-science.ttf" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-medical-science.woff" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-multimedia.eot" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-multimedia.ttf" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-multimedia.woff" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-nature.eot" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-nature.ttf" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-nature.woff" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-shopping-finance.eot" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-shopping-finance.ttf" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-shopping-finance.woff" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-sports.eot" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-sports.ttf" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-sports.woff" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-vehicle-navigation.eot" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-vehicle-navigation.ttf" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-vehicle-navigation.woff" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-weather.eot" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-weather.ttf" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-weather.woff" />
+    <Content Include="readme.txt" />
+    <Content Include="src\html\themes\md\account\activate.html" />
+    <Content Include="src\html\themes\md\account\external.html" />
+    <Content Include="src\html\themes\md\account\login.modal.html" />
+    <Content Include="src\html\themes\md\account\loginPage.html" />
+    <Content Include="src\html\themes\md\account\profile.associate.html" />
+    <Content Include="src\html\themes\md\account\profile.basic.html" />
+    <Content Include="src\html\themes\md\account\profile.cravinghistory.html" />
+    <Content Include="src\html\themes\md\account\profile.dislike.html" />
+    <Content Include="src\html\themes\md\account\profile.mydish.html" />
+    <Content Include="src\html\themes\md\account\profile.myreview.html" />
+    <Content Include="src\html\themes\md\account\profile.favorite.html" />
+    <Content Include="src\html\themes\md\account\profile.html" />
+    <Content Include="src\html\themes\md\account\profile.settings.html" />
+    <Content Include="src\html\themes\md\account\profile.updatepassword.html" />
+    <Content Include="src\html\themes\md\account\reset.html" />
+    <Content Include="src\html\themes\md\account\signup.modal.html" />
+    <Content Include="src\html\themes\md\admin\admin.cache.html" />
+    <Content Include="src\html\themes\md\admin\admin.cravingtags.html" />
+    <Content Include="src\html\themes\md\admin\admin.dishes.html" />
+    <Content Include="src\html\themes\md\admin\admin.files.html" />
+    <Content Include="src\html\themes\md\admin\admin.restaurant.html" />
+    <Content Include="src\html\themes\md\admin\admin.reviews.html" />
+    <Content Include="src\html\themes\md\admin\admin.users.html" />
+    <Content Include="src\html\themes\md\admin\home.html" />
+    <Content Include="src\html\themes\md\dish\add-image-modal.html" />
+    <Content Include="src\html\themes\md\dish\add-tag-modal.html" />
+    <Content Include="src\html\themes\md\dish\dish.add.html" />
+    <Content Include="src\html\themes\md\dish\dish.detail.html" />
+    <Content Include="src\html\themes\md\dish\map.viewer.html" />
+    <Content Include="src\html\themes\md\dish\map.add.html" />
+    <Content Include="src\html\themes\md\craving\home.html" />
+    <Content Include="src\html\themes\md\craving\search.bar.html" />
+    <Content Include="src\html\themes\md\craving\search.html" />
+    <Content Include="src\html\themes\md\externalLogin.html" />
+    <Content Include="src\html\themes\md\index.html" />
+    <Content Include="src\html\themes\md\layout\footer.html" />
+    <Content Include="src\html\themes\md\layout\header.commands.html" />
+    <Content Include="src\html\themes\md\layout\header.html" />
+    <Content Include="src\html\themes\md\layout\header.location.html" />
+    <Content Include="src\html\themes\md\layout\image_modal.html" />
+    <Content Include="src\html\themes\md\layout\recent.dish.html" />
+    <Content Include="src\html\themes\md\layout\shell.html" />
+    <Content Include="src\html\themes\md\layout\shell_with_left_sidebar.html" />
+    <Content Include="src\html\themes\md\layout\shell_with_right_sidebar.html" />
+    <Content Include="src\html\themes\md\admin\moderation_reason_modal.html" />
+    <Content Include="src\html\themes\md\proposal\home.html" />
+    <Content Include="src\html\themes\md\proposal\new_proposal_modal.html" />
+    <Content Include="src\html\themes\md\proposal\proposal_current.html" />
+    <Content Include="src\html\themes\md\proposal\proposal_help.html" />
+    <Content Include="src\html\themes\md\proposal\proposal_modal.html" />
+    <Content Include="src\html\themes\md\proposal\view.html" />
+    <Content Include="src\html\themes\md\restaurant\home.html" />
+    <Content Include="src\html\themes\md\sys\about.html" />
+    <Content Include="src\html\themes\md\sys\help.html" />
+    <Content Include="src\html\themes\md\sys\location.html" />
+    <Content Include="src\html\themes\md\sys\terms.html" />
+    <Content Include="src\html\themes\md\user\diner.html" />
+    <Content Include="src\html\themes\md\widgets\cravingSelect.tpl.html" />
+    <Content Include="src\images\common\generic\generic_user.png" />
+    <Content Include="src\images\common\generic\No_image_available.png" />
+    <Content Include="src\images\themes\md\cannot_activate.jpg" />
+    <Content Include="src\images\themes\md\select2.png" />
+    <Content Include="src\js\themes\md\account\account.activate.js" />
+    <Content Include="src\js\themes\md\account\account.js" />
+    <Content Include="src\js\themes\md\account\account.login.js" />
+    <Content Include="src\js\themes\md\account\account.reset.js" />
+    <Content Include="src\js\themes\md\account\account.signup.js" />
+    <Content Include="src\js\themes\md\account\profile.associate.js" />
+    <Content Include="src\js\themes\md\account\profile.basic.js" />
+    <Content Include="src\js\themes\md\account\profile.cravinghistory.js" />
+    <Content Include="src\js\themes\md\account\profile.dislikecravings.js" />
+    <Content Include="src\js\themes\md\account\profile.favorite.js" />
+    <Content Include="src\js\themes\md\account\profile.js" />
+    <Content Include="src\js\themes\md\account\profile.mydish.js" />
+    <Content Include="src\js\themes\md\account\profile.myreview.js" />
+    <Content Include="src\js\themes\md\account\profile.settings.js" />
+    <Content Include="src\js\themes\md\account\profile.updatepassword.js" />
+    <Content Include="src\js\themes\md\admin\admin.cache.js" />
+    <Content Include="src\js\themes\md\admin\admin.cravingtags.js" />
+    <Content Include="src\js\themes\md\admin\admin.dishes.js" />
+    <Content Include="src\js\themes\md\admin\admin.files.js" />
+    <Content Include="src\js\themes\md\admin\admin.js" />
+    <Content Include="src\js\themes\md\admin\admin.moderation.modal.js" />
+    <Content Include="src\js\themes\md\admin\admin.reviews.js" />
+    <Content Include="src\js\themes\md\admin\admin.users.js" />
+    <Content Include="src\js\themes\md\app.js" />
+    <Content Include="src\js\themes\md\core\app.constant.js" />
+    <Content Include="src\js\themes\md\core\app.js" />
+    <Content Include="src\js\themes\md\core\config.router.account.js" />
+    <Content Include="src\js\themes\md\core\config.router.admin.js" />
+    <Content Include="src\js\themes\md\core\config.router.dish.js" />
+    <Content Include="src\js\themes\md\core\config.router.home.js" />
+    <Content Include="src\js\themes\md\core\config.router.js" />
+    <Content Include="src\js\themes\md\core\config.router.proposal.js" />
+    <Content Include="src\js\themes\md\core\config.router.restaurant.js" />
+    <Content Include="src\js\themes\md\core\main.js" />
+    <Content Include="src\js\themes\md\craving\craving.search.js" />
+    <Content Include="src\js\themes\md\craving\craving.tags.js" />
+    <Content Include="src\js\themes\md\dish\dish.add.js" />
+    <Content Include="src\js\themes\md\dish\dish.addImage.js" />
+    <Content Include="src\js\themes\md\dish\dish.addTags.js" />
+    <Content Include="src\js\themes\md\dish\dish.detail.js" />
+    <Content Include="src\js\themes\md\dish\dish.recent.js" />
+    <Content Include="src\js\themes\md\dish\image.modal.js" />
+    <Content Include="src\js\themes\md\dish\map.add.js" />
+    <Content Include="src\js\themes\md\dish\map.viewer.js" />
+    <Content Include="src\js\themes\md\layout\header.commands.js" />
+    <Content Include="src\js\themes\md\layout\header.js" />
+    <Content Include="src\js\themes\md\layout\navbar.location.js" />
+    <Content Include="src\js\themes\md\layout\search.bar.js" />
+    <Content Include="src\js\themes\md\main.js" />
+    <Content Include="src\js\themes\md\proposal\proposal.modal.js" />
+    <Content Include="src\js\themes\md\proposal\proposal.my.js" />
+    <Content Include="src\js\themes\md\proposal\proposal.view.js" />
+    <Content Include="src\js\themes\md\restaurant\singleRandomRestaurant.js" />
+    <Content Include="src\js\themes\md\restaurant\restaurant.js" />
+    <Content Include="src\js\themes\md\services\adminService.js" />
+    <Content Include="src\js\themes\md\services\authService.js" />
+    <Content Include="src\js\themes\md\services\cravingService.js" />
+    <Content Include="src\js\themes\md\services\dinerService.js" />
+    <Content Include="src\js\themes\md\services\factualService.js" />
+    <Content Include="src\js\themes\md\services\fileService.js" />
+    <Content Include="src\js\themes\md\services\geoService.js" />
+    <Content Include="src\js\themes\md\services\googlePlaceService.js" />
+    <Content Include="src\js\themes\md\services\loaderFactory.js" />
+    <Content Include="src\js\themes\md\services\modalService.js" />
+    <Content Include="src\js\themes\md\services\navigationService.js" />
+    <Content Include="src\js\themes\md\services\proposalService.js" />
+    <Content Include="src\js\themes\md\services\recentDishService.js" />
+    <Content Include="src\js\themes\md\services\referenceDataService.js" />
+    <Content Include="src\js\themes\md\services\restaurantService.js" />
+    <Content Include="src\js\themes\md\services\resumeService.js" />
+    <Content Include="src\js\themes\md\services\service.module.js" />
+    <Content Include="src\js\themes\md\sys\location.js" />
+    <Content Include="src\js\themes\md\user\diner.detail.js" />
+    <Content Include="src\js\themes\md\widgets\access.js" />
+    <Content Include="src\js\themes\md\widgets\cravingSelect.js" />
+    <Content Include="src\js\themes\md\widgets\dirDisqus.js" />
+    <Content Include="src\js\themes\md\widgets\dishDuplicationCheck.js" />
+    <Content Include="src\js\themes\md\widgets\fileField.js" />
+    <Content Include="src\js\themes\md\widgets\ngConfirmClick.js" />
+    <Content Include="src\js\themes\md\widgets\ngplus-overlay.js" />
+    <Content Include="src\js\themes\md\widgets\onLastRepeat.js" />
+    <Content Include="src\js\themes\md\widgets\sticky.js" />
+    <Content Include="src\js\themes\md\_appHelper.js" />
+    <Content Include="src\js\themes\md\_mapHelper.js" />
+    <Content Include="src\js\themes\md\services\loggerService.js" />
+    <Content Include="src\js\themes\md\widgets\compareTo.js" />
+    <Content Include="src\less\vendor\bootstrap-rtl\bootstrap-rtl.less" />
+    <Content Include="src\less\vendor\bootstrap-rtl\mixins-rtl.less" />
+    <Content Include="src\less\vendor\bootstrap-select\bootstrap-select.less" />
+    <Content Include="src\less\vendor\bootstrap-select\variables.less" />
+    <Content Include="src\less\vendor\bootstrap-switch\bootstrap-switch.less" />
+    <Content Include="src\less\vendor\bootstrap\bootstrap.less" />
+    <Content Include="src\less\vendor\summernote\elements.less" />
+    <Content Include="src\less\_variables.less" />
+    <Content Include="src\swig.json" />
+    <Content Include="bower.json" />
+    <Content Include="build.sh" />
+    <Content Include="package.json" />
+    <Content Include=".build\copy-vendor\copy.material.json" />
+    <Content Include=".build\concat-vendor\concat.material.json" />
+    <Content Include="src\less\themes\md\app.less" />
+    <Content Include="src\less\themes\md\main.less" />
+    <Content Include="src\less\themes\md\home\home.less" />
+    <Content Include="src\less\themes\md\home\search.less" />
+    <Content Include="src\less\themes\md\maps\maps.less" />
+    <Content Include="src\less\themes\md\dish\dish.less" />
+    <Content Include="src\less\themes\md\proposal\proposal.less" />
+    <Content Include="src\less\themes\md\sys\about.less" />
+    <Content Include="src\less\themes\md\restaurant\restaurant.less" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\grunt\config.js" />
+    <Content Include="lib\grunt\Gruntfile.js" />
+    <Content Include="lib\grunt\tasks\autoprefixer.js" />
+    <Content Include="lib\grunt\tasks\browserify.js" />
+    <Content Include="lib\grunt\tasks\browserSync.js" />
+    <Content Include="lib\grunt\tasks\build.js" />
+    <Content Include="lib\grunt\tasks\clean.js" />
+    <Content Include="lib\grunt\tasks\concat.js" />
+    <Content Include="lib\grunt\tasks\concurrent.js" />
+    <Content Include="lib\grunt\tasks\copy.js" />
+    <Content Include="lib\grunt\tasks\cssmin.js" />
+    <Content Include="lib\grunt\tasks\default.js" />
+    <Content Include="lib\grunt\tasks\jshint.js" />
+    <Content Include="lib\grunt\tasks\less.js" />
+    <Content Include="lib\grunt\tasks\prettify.js" />
+    <Content Include="lib\grunt\tasks\rename.js" />
+    <Content Include="lib\grunt\tasks\swig.js" />
+    <Content Include="lib\grunt\tasks\uglify.js" />
+    <Content Include="lib\grunt\tasks\watch.js" />
+    <Content Include="lib\grunt\util\browserifyBundleLogger.js" />
+    <Content Include="lib\gulp\assets\fail.png" />
+    <Content Include="lib\gulp\assets\pass.png" />
+    <Content Include="lib\gulp\config.js" />
+    <Content Include="lib\gulp\Gulpfile.js" />
+    <Content Include="lib\gulp\tasks\browserify.js" />
+    <Content Include="lib\gulp\tasks\browserSync.js" />
+    <Content Include="lib\gulp\tasks\build.js" />
+    <Content Include="lib\gulp\tasks\clean.js" />
+    <Content Include="lib\gulp\tasks\concat.js" />
+    <Content Include="lib\gulp\tasks\copy.js" />
+    <Content Include="lib\gulp\tasks\cssmin.js" />
+    <Content Include="lib\gulp\tasks\default.js" />
+    <Content Include="lib\gulp\tasks\jshint.js" />
+    <Content Include="lib\gulp\tasks\less.js" />
+    <Content Include="lib\gulp\tasks\prettify.js" />
+    <Content Include="lib\gulp\tasks\rename.js" />
+    <Content Include="lib\gulp\tasks\swig.js" />
+    <Content Include="lib\gulp\tasks\uglify.js" />
+    <Content Include="lib\gulp\tasks\watch.js" />
+    <Content Include="lib\gulp\util\bundleLogger.js" />
+    <Content Include="lib\gulp\util\handleComplete.js" />
+    <Content Include="lib\gulp\util\handleErrors.js" />
+    <Content Include="lib\gulp\util\watch.js" />
+    <Content Include="lib\icons\pictoicons\css\picto-foundry-arrows.css" />
+    <Content Include="lib\icons\pictoicons\css\picto-foundry-clothing.css" />
+    <Content Include="lib\icons\pictoicons\css\picto-foundry-emotions.css" />
+    <Content Include="lib\icons\pictoicons\css\picto-foundry-food.css" />
+    <Content Include="lib\icons\pictoicons\css\picto-foundry-general.css" />
+    <Content Include="lib\icons\pictoicons\css\picto-foundry-household.css" />
+    <Content Include="lib\icons\pictoicons\css\picto-foundry-medical-science.css" />
+    <Content Include="lib\icons\pictoicons\css\picto-foundry-multimedia.css" />
+    <Content Include="lib\icons\pictoicons\css\picto-foundry-nature.css" />
+    <Content Include="lib\icons\pictoicons\css\picto-foundry-shopping-finance.css" />
+    <Content Include="lib\icons\pictoicons\css\picto-foundry-sports.css" />
+    <Content Include="lib\icons\pictoicons\css\picto-foundry-vehicle-navigation.css" />
+    <Content Include="lib\icons\pictoicons\css\picto-foundry-weather.css" />
+    <Content Include="lib\icons\pictoicons\css\picto.css" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-arrows.svg" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-clothing.svg" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-emotions.svg" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-food.svg" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-general.svg" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-household.svg" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-medical-science.svg" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-multimedia.svg" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-nature.svg" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-shopping-finance.svg" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-sports.svg" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-vehicle-navigation.svg" />
+    <Content Include="lib\icons\pictoicons\fonts\picto-foundry-weather.svg" />
+    <Content Include="lib\icons\weather\svg\cloud.html" />
+    <Content Include="lib\icons\weather\svg\cloudDrizzle.html" />
+    <Content Include="lib\icons\weather\svg\cloudDrizzleAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudDrizzleFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudDrizzleFillAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudDrizzleMoon.html" />
+    <Content Include="lib\icons\weather\svg\cloudDrizzleMoonAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudDrizzleMoonFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudDrizzleMoonFillAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudDrizzleSun.html" />
+    <Content Include="lib\icons\weather\svg\cloudDrizzleSunAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudDrizzleSunFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudDrizzleSunFillAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudFog.html" />
+    <Content Include="lib\icons\weather\svg\cloudFogAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudFogAltFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudFogFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudFogMoon.html" />
+    <Content Include="lib\icons\weather\svg\cloudFogMoonAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudFogMoonAltFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudFogMoonFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudFogSun.html" />
+    <Content Include="lib\icons\weather\svg\cloudFogSunAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudFogSunAltFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudFogSunFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudHailAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudHailAltFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudHailAltMoon.html" />
+    <Content Include="lib\icons\weather\svg\cloudHailAltMoonFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudHailAltSun.html" />
+    <Content Include="lib\icons\weather\svg\cloudLightning.html" />
+    <Content Include="lib\icons\weather\svg\cloudLightningFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudLightningMoon.html" />
+    <Content Include="lib\icons\weather\svg\cloudLightningMoonFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudLightningSun.html" />
+    <Content Include="lib\icons\weather\svg\cloudLightningSunFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudMoon.html" />
+    <Content Include="lib\icons\weather\svg\cloudMoonFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudRain.html" />
+    <Content Include="lib\icons\weather\svg\cloudRainAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudRainAltFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudRainFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudRainMoon.html" />
+    <Content Include="lib\icons\weather\svg\cloudRainMoonAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudRainMoonAltFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudRainMoonFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudRainSun.html" />
+    <Content Include="lib\icons\weather\svg\cloudRainSunAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudRainSunAltFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudRainSunFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudSnow.html" />
+    <Content Include="lib\icons\weather\svg\cloudSNowAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudSnowAltFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudSnowFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudSnowMoon.html" />
+    <Content Include="lib\icons\weather\svg\cloudSnowMoonAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudSnowMoonAltFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudSnowMoonFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudSnowSun.html" />
+    <Content Include="lib\icons\weather\svg\cloudSnowSunAlt.html" />
+    <Content Include="lib\icons\weather\svg\cloudSnowSunAltFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudSnowSunFill.html" />
+    <Content Include="lib\icons\weather\svg\cloudSun.html" />
+    <Content Include="lib\icons\weather\svg\cloudSunFill.html" />
+    <Content Include="lib\icons\weather\svg\moon.html" />
+    <Content Include="lib\icons\weather\svg\moonFill.html" />
+    <Content Include="lib\icons\weather\svg\snowflake.html" />
+    <Content Include="lib\icons\weather\svg\snowflakeFill.html" />
+    <Content Include="lib\icons\weather\svg\sun.html" />
+    <Content Include="lib\icons\weather\svg\sunFill.html" />
+    <Content Include="lib\icons\weather\svg\sunrise.html" />
+    <Content Include="lib\icons\weather\svg\sunriseAlt.html" />
+    <Content Include="lib\icons\weather\svg\sunriseAltFill.html" />
+    <Content Include="lib\icons\weather\svg\sunriseFill.html" />
+    <Content Include="lib\icons\weather\svg\sunset.html" />
+    <Content Include="lib\icons\weather\svg\sunsetAlt.html" />
+    <Content Include="lib\icons\weather\svg\sunsetAltFill.html" />
+    <Content Include="lib\icons\weather\svg\sunsetFill.html" />
+    <Content Include="lib\icons\weather\svg\tornado.html" />
+    <Content Include="lib\icons\weather\svg\wind.html" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50496</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50496/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

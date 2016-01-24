@@ -1,0 +1,14 @@
+<div layout="column" layout-fill id="shell-container">
+  <ng-include src="'layout/header.html'"></ng-include>
+
+  <md-content layout="row" layout-margin layout-fill flex role="main" id="main-sidebar-container">
+    <div ui-view="content" class="content-viewer" flex-gt-md="50" flex></div>
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2 right-sidebar" md-component-id="right" id="right" md-is-locked-open="$mdMedia('gt-sm')">
+      <div ui-view="sidebar" flex layout="column" layout-fill style="overflow:hidden;"></div>
+    </md-sidenav>
+  </md-content>
+
+  <ng-include src="'layout/recent.dish.html'"></ng-include>
+
+  <ng-include src="'layout/footer.html'"></ng-include>
+</div>

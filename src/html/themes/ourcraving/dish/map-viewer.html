@@ -1,0 +1,10 @@
+﻿<div id="google-rest-map" data-toggle="google-maps"
+     data-zoom="15" data-scrollwheel ="true"
+     data-zoom-position="RIGHT_BOTTOM" class="maps-google-fs">
+</div>
+
+<div class="navbar navbar-default navbar-size-large navbar-static-top navbar-map-overlay" data-ng-show="vm.message!=''">
+    <div class="navbar-text"><i class="fa fa-fw fa-info"></i> ::vm.message::</div>
+</div>
+
+{% include "src/html/themes/ourcraving/maps/_map_templates.html" %}

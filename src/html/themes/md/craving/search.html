@@ -1,0 +1,82 @@
+﻿<div layout="column">
+    <!--TODO: this one still needs to go to the header bar-->
+    <div ng-include="'craving/search.bar.html'"></div>
+    <div ng-show="vm.searchResults.length > 0" layout-fill flex data-scrollable>
+        <md-subheader style="margin-right: 0">Craving for: {{vm.searchText}}</md-subheader>
+        <md-content flex md-scroll-y id="listContainer">
+            <div id="result-content" layout-fill layout="row" layout-align="start start">
+                <md-list class="dish-group" flex flex-gt-sm="95" flex-gt-md="60">
+                    <md-list-item ng-repeat="result in vm.searchResults">
+                        <md-item-content flex layout-fill>
+                            <md-list flex layout-fill>
+                                <md-list-item flex layout-margin layout-align="start start" layout="row" ng-repeat="d in result.Dishes" class="dish-item" ng-click="vm.openDetail(d);">
+                                    <div flex layout="column">
+                                        <div layout-sm="column">
+                                            <div class="dish-item-content">
+                                                <a class="dish-item-name" ui-sref="dish.detail({'id':'{{d.DishId}}'})"><span class="dishName">{{d.Name}}</span></a>
+                                            </div>
+                                            <div layout="row">
+                                                <img ng-src="{{vm.getPreviewImage(d.DishImageFileName)}}" class="img-dish" />
+                                                <div layout="column" flex>
+                                                    <h4 class="md-title">
+                                                        <a ui-sref="restaurant.home({id:result.RestaurantId})" alt="check all cravings in this restaurant">
+                                                            {{result.RestaurantName}}
+                                                        </a>
+                                                    </h4>
+                                                    <span class="md-body-1">Found <b>{{result.FoundDishes}}</b> dishes matching your cravings</span>
+                                                    <span class="md-body-2">Reviews: {{d.CommentCount}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md-tile-right inset dish-item-creator" hide-sm>
+                                        <div layout="column" layout-align="center center">
+                                            <img ng-src="{{vm.getDinerImage(d.CreatorImageFileName)}}" class="img-avatar" />
+                                            <h5 class="md-title">{{d.CreatorName}}</h5>
+                                            <span class="md-caption">{{vm.formateDate(d.CreatedDate)}}</span>
+                                        </div>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-item-content>
+                    </md-list-item>
+                </md-list>
+            </div>
+
+            <md-divider></md-divider>
+
+            <div layout-padding>
+                <h5> {{vm.resultTotal}} found match your craving [{{vm.searchText}}], {{vm.searchResults.length}} loaded</h5>
+                <md-button ng-click="vm.loadMore();" ng-show="vm.hasMore == true" class="md-primary md-raised " aria-label="Load more search results">
+                    <md-tooltip>Load more search results</md-tooltip>
+                    Load more...
+                </md-button>
+            </div>
+
+            <div layout-padding>
+                <h5>Suggest a dish matches these cravings!</h5>
+                <md-button class="md-primary md-raised " aria-label="Add Dish" ui-sref="dish.add({ 'input': '{{vm.input}}' })">
+                    <md-tooltip>Add a new dish</md-tooltip>
+                    <ng-md-icon icon='{{vm.addDishIcon}}' options='{"duration": 375}' size="20"></ng-md-icon>
+                    Add a dish matches [{{vm.input}}]
+                </md-button>
+            </div>
+        </md-content>
+    </div>
+    <div ng-show="vm.searching" layout-fill layout-padding>
+        <md-progress-linear md-mode="indeterminate"></md-progress-linear>
+        <div class="bottom-block">
+            <h3>We are working hard to find your cravings...</h3>
+        </div>
+    </div>
+    <div ng-show="vm.searchResults.length == 0 && vm.searching == false" layout-fill layout-padding>
+        <h2>Oops, we can't find anything for your craving. Sorry for that!</h2>
+
+        <h4>Suggest a dish matches this craving now!</h4>
+        <md-button class="md-primary md-raised " aria-label="Add Dish" ui-sref="dish.add({ 'input': '{{vm.input}}' })">
+            <md-tooltip>Add a new dish</md-tooltip>
+            <ng-md-icon icon='{{vm.addDishIcon}}' options='{"duration": 375}' size="20"></ng-md-icon>
+            Add a dish matches [{{vm.input}}]
+        </md-button>
+    </div>
+</div>

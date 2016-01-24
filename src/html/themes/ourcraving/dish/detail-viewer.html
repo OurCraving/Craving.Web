@@ -1,0 +1,175 @@
+﻿<div id="message_panel" data-ng-show="vm.message!=''" data-ng-class="(vm.savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+    <span>::vm.message::</span>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">::vm.dish.Name::</h2>
+        @ ::vm.dish.RestaurantName::
+        <div data-ng-click="vm.openMap();" class="location-arrow-wrapper" tag="Locate this restaurant"><i class="fa fa-location-arrow"></i> </div>
+
+        <a class="btn btn-danger absolute top-20 right-260 margin-none" access="moderator,admin,owner" role-check-type="any"
+           data-ng-click="vm.removeDish();" title="Remove dish">
+            <i class="fa fa-exclamation-circle fa-2x pull-left"></i> Remove<br /> Dish
+        </a>
+
+        <div class="btn-group absolute top-20 right-100 margin-none">
+            <button type="button" class="btn btn-default dropdown-toggle btn-success" data-ng-click="vm.addToProposal();"
+                    title="Add to craving proposal list">
+                <i class="fa fa-bookmark pull-left"></i>
+                Add to Proposal
+            </button>
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+                <li data-ng-repeat="p in vm.proposals"><a href="#" data-ng-click="vm.addToProposal(p);">::vm.getProposalName(p.Name):: </a></li>
+                <li class="divider" data-ng-show="vm.proposals.length>0"></li>
+                <li><a href="#" data-ng-click="vm.addToNewProposal();">Create a new proposal</a></li>
+            </ul>
+        </div>
+        
+        <a class="clickable" data-ng-click="vm.openDiner();">
+            <img class="thumbnail max-width-60 avatar-thumbnail absolute top-20 right-20 margin-none"
+                 ng-src="::vm.getDinerImage(vm.dish.CreatorImageFileName)::" alt="Peek">
+        </a>
+    </div>
+    <form>
+        <div class="panel-body margin-bottom-none">
+            <div data-ng-show="vm.hasDescription && vm.showDescriptionEditor == false">
+                <p>::vm.dish.Description::</p>
+                <a class="clickable" data-ng-click="vm.showDescriptionEditor = true">[Update it]</a>
+            </div>
+            <div data-ng-show="vm.hasDescription==false">
+                <p>There is no description of this dish. <a class="clickable" data-ng-click="vm.showDescriptionEditor = true">[Add Description Now]</a></p>
+            </div>
+            <div class="form-group form-control-default" data-ng-show="vm.showDescriptionEditor">
+                <label for="description">Description</label>
+                <textarea class="form-control" rows="4" id="description"
+                          placeholder="Describe the dish, for example, what ingredient does it have and what it looks like."
+                          data-ng-model="vm.updatingDescription"></textarea>
+                <button class="btn btn-primary" data-ng-click="vm.saveDescription();">Save</button>
+                <button class="btn btn-default" data-ng-click="vm.updatingDescirption = vm.dish.Description;vm.showDescriptionEditor = false;">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="panel panel-default margin-bottom-none">
+    <div class="panel-body">
+        <h4 class="panel-title"><i class="fa fa-fw fa-heart-o text-pink-500"></i> ::vm.numberOfCravingDiners:: craved this</h4>
+        <div class="column-items-wrapper-8">
+            <div class="card column-item max-width-140 clickable" data-ng-repeat="file in vm.dish.DishImageFiles">
+                <img ng-src="::vm.getDishImageSrc(file.FileName)::" class="img-responsive" data-ng-click="vm.openImage(file.FileName);" />
+            </div>
+
+            <div class="card column-item max-width-120 max-height-90 text-center clickable" data-ng-click="vm.addFile();">
+                <span class="fa fa-3x fa-plus-square"></span>
+                <div>Add Photo</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="property-meta">
+    <ul>
+        <!--TODO: link each tag to search page-->
+        <li class="property-meta-item" data-ng-repeat="crave in vm.dish.Cravings">
+            ::crave.CravingTag::
+        </li>
+        <li class="property-meta-item clickable" data-ng-click="vm.addCravingTags();">
+            <span class="fa fa-plus-square">Add Craving Tag</span>
+        </li>
+    </ul>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">Reviews</h4>
+    </div>
+    <div class="panel-body">
+        <form>
+            <div class="property-meta padding-15">
+                <div class="form-group input-group">
+                    <div ng-switch="vm.totalReviews">
+                        <div ng-switch-when="0" style="display: inline">
+                            <small>Be the first to review this dish!</small>
+                        </div>
+                        <div ng-switch-default style="display: inline">
+                            <label for="rating" class="sidebar-text" style="margin: 5px 0"> Total Rating: <strong>::vm.averageRating::</strong></label>
+                            <div class="small-inline">
+                                (from ::vm.totalReviews::
+                                <ng-pluralize count="vm.totalReviews" when="{'1': 'diner','other': 'diners'}"></ng-pluralize>)
+                            </div>
+                        </div>
+                    </div>
+
+                    <label for="rating" class="sidebar-text" style="margin: 5px 0">My Rating:</label>
+                    <rating data-ng-model="vm.myRating" max="5"
+                            on-hover="vm.hoveringOver(value)"
+                            on-leave="vm.hoveringLeave()"></rating> (::vm.reviews.length::)
+                    <span class="label"
+                          data-ng-class="{'label-warning': vm.percent<30, 'label-info': vm.percent>=30 && vm.percent<70, 'label-success': vm.percent>=70}"
+                          data-ng-show="vm.overStar !== null || vm.showReviewBox == true">::vm.ratingLabel::</span>
+                </div>
+                <div class="form-group input-group">
+                    <input type="text" class="form-control" placeholder="Your comment .." data-ng-model="vm.myReview" data-ng-readonly="vm.myRating == 0">
+                    <span class="input-group-btn">
+                        <button class="btn" data-ng-class="{'btn-warning': vm.myReviewIsChanged == true, 'btn-primary': vm.myReviewIsChanged == false}"
+                                type="button" ui-keypress="{enter:'vm.saveMyReview()'}" data-ng-click="vm.saveMyReview();">
+                            <i class="fa fa-pencil-square"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </form>
+
+        <div ng-class="{'expandable expandable-indicator-white expandable-trigger': vm.reviews.length>2}">
+            <div class="expandable-content expandable-content-medium">
+                <section class="panel panel-default" ng-repeat="review in vm.reviews">
+                    <div class="panel-body">
+                        <div class="media">
+                            <a class="media-left clickable" data-ng-click="vm.openDiner(review.ReviewerId);">
+                                <img class="media-object thumbnail max-width-60" ng-src="::vm.getDinerImage(review.ReviewerImageFileName)::" alt="Peek" />
+                            </a>
+                            <div class="media-body">
+                                <small class="text-grey-400 pull-right">::vm.getReviewPostDate(review)::</small>
+                                <h5 class="media-heading margin-v-5">::review.ReviewerName::</h5>
+                                <p class="margin-none">::review.Review::</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">Restaurant Location</h4>
+        We found ::vm.restaurants.length:: in your city
+    </div>
+    <div class="panel-body">
+        <div class="grid-tiles">
+            <div class="panel panel-default card grid-item" data-ng-repeat="r in vm.restaurants" on-last-repeat data-ng-click="vm.getDirection(r);"
+                 title="get direction from my location to this place">
+                <div class="panel-heading">
+                    <div class="numberCircle" ng-class="{active: r.isSelected}">::r.placeIndex::</div>
+                    <h5 class="panel-title">::r.name::</h5>
+                    <a data-ng-show="r.website && r.website!=''" href="::r.website::" target="_blank"><span class="md md-public"></span></a>
+                </div>
+                <div class="panel-body">
+                    <h4 class="margin-v-0-5">Address:</h4>
+                    <div>::r.address::</div>
+                    <p data-ng-show="r.tel">::r.tel::</p>
+                    <h4 class="margin-v-0-5">Hours</h4>
+                    <p>::r.hours_display::</p>
+                    <p data-ng-show="r.hours_display == undefined || r.hours_display == ''">Ah, we have no idea about it.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--TODO: add other dishes from the same restaurant-->

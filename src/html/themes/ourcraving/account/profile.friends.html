@@ -1,0 +1,10 @@
+﻿<div>
+    <form class="form-profile" role="form">
+        <h2 class="form-profile-heading">{{vm.selectedItem}}</h2>
+        <div>
+            <div data-ng-hide="vm.message == ''" data-ng-class="(vm.savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                ::vm.message::
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,26 @@
+﻿<md-dialog aria-label="{{vm.title}}" style="min-height: 480px;">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            <h2>Add new craving tags to dish {{vm.dish.Name}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="vm.close();">
+                <ng-md-icon icon="close" aria-label="Close dialog"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+        <div class="md-toolbar-tools">
+            <h5 class="md-flex">{{vm.message}}</h5>
+        </div>
+    </md-toolbar>
+    <md-content class="md-padding" flex layout="row" layout-align="center start">
+        <form ng-submit="vm.submit(vm.selectedCravings)" flex>
+            <label for="match">Matched Cravings</label>
+            <craving-select selected-craving="vm.selectedCravings"></craving-select>
+        </form>
+    </md-content>
+    <div class="md-actions" layout="row" flex="5" layout-align="center center">
+        <md-button ng-click="vm.close();"> Close </md-button>
+        <md-button ng-click="vm.submit(vm.selectedCravings);" class="md-primary"> Save </md-button>
+    </div>
+</md-dialog>

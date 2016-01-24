@@ -1,0 +1,46 @@
+<md-toolbar class="md-theme-light">
+  <div class="md-toolbar-tools">
+    <h3 class="md-title">Map</h3>
+    <span flex></span>
+    <md-button ng-click="vm.close()" aria-label="close the map viewer" hide-gt-sm>
+      <ng-md-icon icon="close" style="margin-bottom:10px;"></ng-md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+
+<md-content layout="column" flex="30">
+  <div class="map-wrapper">
+    <ui-gmap-google-map center="vm.map.center" zoom="vm.map.zoom" draggable="true" options="vm.map.options" control="vm.map.control">
+      <ui-gmap-marker options="vm.map.userMarker.options" coords="vm.map.userMarker.coords" icon="vm.map.userMarker.icon" events="vm.map.userMarker.events" idkey="vm.map.userMarker.id"></ui-gmap-marker>
+      <ui-gmap-markers models="vm.map.markers" coords="'coords'" icon="'icon'" options="'options'" events="'events'" modelsbyref="true">
+      </ui-gmap-markers>
+    </ui-gmap-google-map>
+  </div>
+</md-content>
+<md-content layout="column" layout-fill flex class="scrollable-content">
+  <h3 class="location-title">Restaurant Location</h3>
+  <span style="margin-left:20px">We found {{vm.restaurants.length}} in your city</span>
+  <div flex layout="column" layout-fill>
+    <div class="grid-tiles" flex layout="column">
+      <div data-ng-repeat="r in vm.restaurants" data-ng-click="vm.locate(r);" ng-class="{selected_grid_item: item.isSelected}" class="panel panel-default card grid-item">
+        <div class="panel-heading" title="{{r.name}}">
+          <div class="numberCircle" ng-class="{active: r.isSelected}">{{r.placeIndex}}</div>
+          <h5 class="panel-title">
+            {{r.name | limitTo: 25}} {{r.name.length > 25 ? '...' :''}}
+          </h5>
+          <a data-ng-show="r.website && r.website!=''" href="{{r.website}}" target="_blank">
+            <ng-md-icon icon="web" size="16"></ng-md-icon>
+          </a>
+        </div>
+        <div class="panel-body">
+          <h5>Address:</h5>
+          <div>{{r.address}}</div>
+          <p data-ng-show="r.tel">{{r.tel}}</p>
+          <h5>Open Hours</h5>
+          <p>{{r.hours_display}}</p>
+          <p data-ng-show="r.hours_display == undefined || r.hours_display == ''">Ah, sorry, we have no idea about it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</md-content>

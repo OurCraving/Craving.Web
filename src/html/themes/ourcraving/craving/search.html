@@ -1,0 +1,46 @@
+﻿<div class="row" ng-controller="SearchCravingController as vm">
+    <div class="col-sm-12 col-xs-12">
+        <h2>Search Cravings</h2>
+        <ul class="dish-group">
+            <li ng-repeat="result in vm.searchResults">
+                <div class="panel panel-default dish-item" data-ng-repeat="d in result.Dishes" data-ng-click=" vm.openDetail(d)">
+                    <div class="panel-body">
+                        <div class="media media-clearfix-xs media-clearfix-sm">
+                            <div class="media-left">
+                                <p><a><img ng-src="::vm.getPreviewImage(d.DishImageFileName)::" class="media-object img-dish-preview" /></a></p>
+                                <div class="text-center small">
+                                    <rating data-ng-model="d.Rating" max="5" readonly="true" state-off="'none'"></rating>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <div class="pull-right card-target">
+                                    <a>
+                                        <img ng-src="::vm.getDinerImage(d.CreatorImageFileName)::" class="img-avatar" />
+                                    </a>
+                                    <a><span><i class="fa fa-comments"></i> ::d.CommentCount::</span></a>
+                                    <a class="centered crave-button" data-ng-click="vm.craveForIt(d, $event)">
+                                        <span class="fa fa-heart-o crave-dish-icon"></span>
+                                        <span class="crave-dish-count">::d.NumberOfCravingDiners::</span>
+                                    </a>
+                                </div>
+                                <h4 class="media-heading margin-v-0-10">
+                                    <a>::d.Name::</a>
+                                    <small class="text-grey-400"><i class="fa fa-clock-o fa-fw"></i> 5 days ago</small>
+                                </h4>
+                                <p>
+                                    <span class="label label-grey-100 dish-item-restaurant"><i class="fa icon-fork-knife fa-fw"></i> ::result.RestaurantName::</span>
+                                    <small class="label label-grey-100 "><i class="fa fa-location-arrow fa-fw"></i> ::result.RestaurantAddress::</small>
+                                    <span class="dish-item-restaurant-count">Found <b>::result.FoundDishes::</b> dishes matching your cravings</span>
+                                </p>
+                                <p>
+                                    <span class="label label-grey-100" data-ng-repeat="tag in d.Cravings">::tag::</span>
+                                </p>
+                                <p class="margin-none" data-ng-show="d.Description">::d.Description::</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

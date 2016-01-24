@@ -1,0 +1,16 @@
+﻿<div ng-controller="RecentDishController as vm" class=" left-bottom-launcher">
+    <md-fab-speed-dial md-direction="up" ng-class="md-fling" ng-show="vm.dishes.length > 0">
+        <md-fab-trigger style="z-index:9999">
+            <md-button aria-label="menu" class="md-fab md-warn">
+                <ng-md-icon icon="history"></ng-md-icon>
+            </md-button>
+        </md-fab-trigger>
+        <md-fab-actions>
+            <md-button class="md-raised" ng-repeat="d in vm.dishes" ng-class="{ 'md-primary': vm.isCurrent(d) }"
+                       style="text-align:left; z-index:9999" ui-sref="dish.detail({'id':'{{d.DishId}}'})">
+                <md-tooltip md-direction="right">Open dish: {{d.Name}}</md-tooltip>
+                <span class="badge">{{$index + 1}}</span> {{d.Name}}
+            </md-button>
+        </md-fab-actions>
+    </md-fab-speed-dial>
+</div>

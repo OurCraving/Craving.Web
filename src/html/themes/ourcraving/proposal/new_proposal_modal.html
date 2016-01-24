@@ -1,0 +1,15 @@
+﻿<div class="modal-header">
+    <h4 class="modal-title"><i class="fa fa-cutlery"></i> Choose a name for your proposal</h4>
+</div>
+<form ng-submit="vm.submit(proposalData)">
+    <div class="modal-body text-center">
+        <div class="horizontal">
+            <input type="text" class="form-control" placeholder="My Proposal" maxlength="100" data-ng-model="proposalData.name" />
+        </div>
+    </div>
+</form>
+
+<div class="modal-footer">
+    <a class="btn btn-primary" data-ng-click="vm.submit(proposalData)">Submit</a>
+    <a class="btn" ng-click="vm.close()">Close</a>
+</div>

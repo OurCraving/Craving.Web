@@ -1,0 +1,59 @@
+﻿<div data-ng-controller="ProfileBasicInformationController as vm">
+    <h2 class="form-profile-heading">::vm.title::</h2>
+    <form class="form-profile" role="form" name="profileForm">
+
+                <div class="form-group form-control-default">
+                    <label for="emailField">Email: (cannot change)</label>
+                    <input type="email" id="emailField" class="form-control" placeholder="Email"
+                           data-ng-model="vm.data.email" readonly="readonly">
+                </div>
+
+                <div class="form-group form-control-default">
+                    <label for="displayNameField">Display Name:</label>
+                    <input type="text" id="displayNameField" class="form-control" placeholder="Display Name"
+                           data-ng-model="vm.data.displayName" required autofocus>
+                </div>
+                <div class="form-group form-control-default">
+                    <label for="tagLineField">Tag Line:</label>
+                    <input type="text" id="tagLineField" class="form-control" placeholder="Tag Line"
+                           data-ng-model="vm.data.tagLine">
+                </div>
+                <div class="form-group form-control-default">
+                    <label for="birthdayField">Birthday:</label>
+                    <input type="date" id="birthdayField" class="form-control" placeholder="Birthday"
+                           data-ng-model="vm.data.birthday">
+                </div>
+                <hr />
+                <div class="row">
+                    <p class="centered">
+                        <file-field class="btn" ng-model="vm.uploadingFile"
+                                    ng-class="{'btn-success':previewImage}" preview="previewImage">Select a new avatar</file-field>
+                    </p>
+                    <div class="col-sm-6">
+                        <h4>Current Avatar</h4>
+                        <div data-ng-hide="vm.data.avatar == null">
+                            <img data-ng-src="::vm.data.avatar::" class="img-responsive img-avatar img-circle" />
+                            <button class=" btn btn-warning" data-ng-click="vm.deleteAvatar()" data-ng-show="vm.canDeleteAvatar">Delete</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div data-ng-show="vm.uploadingFile != ''">
+                            <h4>New Avatar File</h4>
+                            <img ng-src="::previewImage::" class="img-responsive img-avatar img-circle">
+                            <button class="btn btn-default" data-ng-click="vm.resetUpload(); previewImage=null;"> Forget it </button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-lg btn-info" data-ng-click="vm.submit()" data-ng-disabled="vm.savedSuccessfully==true">
+                        Submit <i class="fa fa-floppy-o"></i>
+                    </button>
+                </div>
+                <div>
+                    <div data-ng-hide="vm.message == ''" data-ng-class="(vm.savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                        ::vm.message::
+                    </div>
+                </div>
+    </form>
+
+</div>

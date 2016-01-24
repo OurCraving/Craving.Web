@@ -1,0 +1,79 @@
+﻿<md-dialog aria-label="{{vm.title}}" id="loginModal" style="min-height: calc(100% - 80px);">
+    <md-toolbar class="md-hue-4">
+        <div class="md-toolbar-tools">
+            <h2>User Profile</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="vm.close();">
+                <ng-md-icon icon="close" aria-label="Close dialog"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+        <div class="md-toolbar-tools">
+            <h5 class="md-flex">{{vm.message}}</h5>
+        </div>
+    </md-toolbar>
+    <md-content class="md-padding" flex>
+        <div layout="row">
+            <img ng-src="{{vm.getDinerImage(vm.diner.Avatar)}}" title="{{vm.diner.DisplayName}}" class="img-responsive img-big-avatar" />
+            <span flex></span>
+            <div layout="column">
+                <h4>{{vm.diner.DisplayName}}</h4>
+                <span>Member since: {{vm.getMemberSince(vm.diner)}}</span>
+            </div>
+        </div>
+        <md-list md-scroll-y flex style="margin-top:20px; background-color:white;" class="md-whiteframe-z2">
+            <section>
+                <md-subheader class="md-accent">Recent Cravings</md-subheader>
+                <md-list-item ng-show="vm.recentCravings.length > 0" data-ng-repeat="(key, value) in vm.recentCravings |groupBy: 'CravingTag'">
+                    <div layout layout-fill>
+                        <span flex>
+                            <a ui-sref="app.home.search({criteria: key})" class="text-muted">{{key}}</a>
+                        </span>
+                        <span class="badge">{{value.length}}</span>
+                    </div>
+                </md-list-item>
+                <md-list-item ng-show="vm.recentCravings.length == 0">
+                    This diner has not craved for anything lately...
+                </md-list-item>
+            </section>
+            <md-divider></md-divider>
+            <section>
+                <md-subheader class="md-accent">Recently Added Dishes</md-subheader>
+                <md-list-item class="md-2-line" ng-show="vm.recentDishes.length > 0" data-ng-repeat="dish in vm.recentDishes">
+                    <div class="md-list-item-text">
+                        <h3><a ui-sref="dish.detail({id: dish.DishId})" title="open the detail of this dish" target="_blank">{{dish.Name}}</a></h3>
+                        <p>{{dish.RestaurantName}}</p>
+                    </div>
+                </md-list-item>
+                <md-list-item ng-show="vm.recentDishes.length == 0">
+                    This diner has not shared any dish...
+                </md-list-item>
+            </section>
+            <md-divider></md-divider>
+            <section>
+                <md-subheader class="md-accent">Recently Reviewed</md-subheader>
+                <md-list-item class="md-3-line" ng-show="vm.recentReviews.length > 0" data-ng-repeat="r in vm.recentReviews">
+                    <div class="md-list-item-text">
+                        <h3><a ui-sref="dish.detail({id: r.DishId})" title="open the detail of this dish" target="_blank">{{r.DishName}}</a></h3>
+                        <div layout layout-fill>
+                            <rating data-ng-model="r.Rating" max="5" readonly="true" state-off="'none'"></rating>
+                            <span flex></span>
+                            <span class="small">{{vm.formateDate(r.PostDate)}}</span>
+                        </div>
+                        <p>
+                            {{r.Review | limitTo: 30}} {{r.Review.length > 30 ? '...' :''}}
+                        </p>
+                    </div>
+                </md-list-item>
+                <md-list-item ng-show="vm.recentReviews.length == 0">
+                    This diner has not commented any dish...
+                </md-list-item>
+            </section>
+
+        </md-list>
+</md-content>
+    <div class="md-actions" layout="row" flex="5" layout-align="end center">
+        <md-button ng-click="vm.close();"> Close </md-button>
+    </div>
+</md-dialog>

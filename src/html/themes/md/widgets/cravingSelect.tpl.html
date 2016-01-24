@@ -1,0 +1,9 @@
+﻿<div>
+    <ui-select multiple data-ng-model="local.selected" on-select="selectCraving($item, $model)" on-remove="removeCraving($item, $model)" theme="select2"
+               ng-disabled="disabled" style="width: 100%;">
+        <ui-select-match placeholder="Select Craving..." allow-clear="true">{{$item.Name}}</ui-select-match>
+        <ui-select-choices repeat="c.Id as c in cravings | propsFilter: {Name: $select.search, Notes: $select.search}">
+            <div ng-bind-html="c.Name | highlight: $select.search"></div>
+        </ui-select-choices>
+    </ui-select>
+</div>

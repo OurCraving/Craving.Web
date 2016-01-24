@@ -1,0 +1,28 @@
+﻿<div class="modal-header">
+    <h4 class="modal-title"><i class="fa fa-cutlery"></i> Add new image to dish ::vm.dish.Name::</h4>
+</div>
+
+<div id="message_panel" data-ng-show="vm.message!=''" data-ng-class="(vm.savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+    <span>::vm.message::</span>
+</div>
+
+<form novalidate>
+    <div class="modal-body">
+        <div class="form-group">
+            <div>
+                <label for="facilities" class="sidebar-text">Upload Dish Photo</label>
+            </div>
+            <file-field class="btn" ng-model="vm.uploadImage"
+                        ng-class="{'btn-success':previewImage}" preview="previewImage">Select a photo of this dish</file-field>
+            <div data-ng-show="vm.uploadImage != ''" class="uploadPreviewContainer">
+                <img ng-src="::previewImage::" class="img-responsive img-dish-preview">
+                <md-button class="md-raised md-warn" data-ng-click="previewImage=null; vm.resetUpload();"> Forget it </md-button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="modal-footer">
+    <a class="btn btn-primary" data-ng-click="vm.submit()">Submit</a>
+    <a class="btn" ng-click="vm.close()">Close</a>
+</div>

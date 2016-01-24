@@ -1,0 +1,62 @@
+﻿{% include "src/html/themes/ourcraving/layout/_layout_2_cover.html" %}
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div id="message_panel" data-ng-show="vm.message!=''"
+                 data-ng-class="(vm.savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                <span>::vm.message::</span>
+            </div>
+            <form novalidate>
+                <div class="tabbable">
+                    <!-- Tabs -->
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#login" data-toggle="tab" ng-click="vm.viewSwitch(true)">Login</a></li>
+                        <li><a href="#passwordFinder" data-toggle="tab" ng-click="vm.viewSwitch(false)">Forget my password</a></li>
+                    </ul>
+                    <!-- // END Tabs -->
+
+                    <div class="tab-content">
+                        <div id="login" class="tab-pane active">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                                    <input type="email" name="loginEmail" id="loginEmail" class="form-control" placeholder="Email address" data-ng-model="vm.loginData.email"
+                                           title="The email address you used to register"
+                                           required autofocus ui-keypress="{enter:'vm.submit($event)'}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-shield fa-fw"></i></span>
+                                    <input type="password" name="loginPassword" id="loginPassword" class="form-control" placeholder="Password" data-ng-model="vm.loginData.password"
+                                           title="The password you entered for your account"
+                                           required ui-keypress="{enter:'vm.submit($event)'}">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="passwordFinder" class="tab-pane">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                                    <input type="email" name="forgetEmail" id="forgetEmail" class="form-control" placeholder="Email address" data-ng-model="vm.forgetData.email" required autofocus ui-keypress="{enter:'vm.submit($event)'}">
+                                </div>
+                            </div>
+                            <p class="small">
+                                We will send you an encrypted link to your email box so you can reset your password.The email should arrive in less than half hour.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary" data-ng-click="vm.submit()">
+                        <span ng-if="vm.showLoginForm">Login</span>
+                        <span ng-if="vm.showLoginForm == false">Reset Password</span>
+                        <i class="fa fa-sign-in" ng-if="vm.showLoginForm"></i>
+                        <i class="fa fa-unlock" ng-if="vm.showLoginForm == false"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

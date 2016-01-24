@@ -1,0 +1,122 @@
+<div class="pull-right-container">
+    <a class="btn btn-default pull-right" ><i class="fa fa-question-circle"></i></a>
+    <a data-toggle="sidebar-menu" href="#sidebar-edit" id="toggle-sidebar-edit" class="btn btn-default pull-right"><i class="fa fa-edit"></i></a>
+</div>
+
+<form action="#" data-ng-show="vm.showAddDish" class="editor-form">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">Add a Craving Dish</h2>
+        </div>
+        <div class="panel-body">
+            Found a loving dish? Share the joy with the world! 
+        </div>
+    </div>
+    <div class="panel panel-defaul">
+        <div class="panel-heading">
+            <h4 class="panel-title">Where did you find it?</h4>
+        </div>
+        <div class="panel-body">
+            <div class="form-group form-control-default required">
+                <label for="restName">Restaurant Name</label>
+                <input type="text" placeholder="Restaurant Name, click from the map or type to search..." class="form-control"
+                       id="restName" data-ng-model="vm.dish.restaurant.name" required />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-defaul">
+        <div class="panel-heading">
+            <h4 class="panel-title">Craving Dish</h4>
+        </div>
+        <div class="panel-body">
+            <div class="form-group form-control-default required">
+                <label for="dishName">Name</label>
+                <ui-select data-ng-model="vm.dish.selected" id="dishName" style="width:100%"
+                           tagging="vm.tagDishTransform"
+                           tagging-label="false"
+                           ng-disabled="disabled"
+                           reset-search-input="false">
+                    <ui-select-match placeholder="Enter dish name...">::$select.selected.DishName::</ui-select-match>
+                    <ui-select-choices repeat="dish in vm.matchingDishes track by $index | propsFilter: {DishName: $select.search}"
+                                       refresh="vm.matchDish($select.search)"
+                                       refresh-delay="500">
+                        <div ng-bind-html="dish.DishName | highlight: $select.search">
+                        </div>
+                    </ui-select-choices>
+                </ui-select>
+                <div class="invalid-message" data-ng-show="vm.invalid.dishname">
+                    Dish name is required. Start typing and let us find the dish you are looking for, or simply add a new one.
+                </div>
+            </div>
+            
+            <div class="form-group form-control-default">
+                <label for="match">Matched Cravings</label>
+                <craving-select selected-craving="vm.dish.selectedCravings"></craving-select>
+            </div>
+        </div>
+        <div class="panel-heading">
+            <h4 class="panel-title">How do you feel about this dish?</h4>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="rating" class="sidebar-text" style="margin: 5px 0">Rating</label>
+                <rating data-ng-model="vm.dish.rating" max="vm.maxRating"
+                        on-hover="vm.hoveringOver(value)" id="rating"
+                        on-leave="vm.hoveringLeave()"></rating>
+                <span class="label"
+                      data-ng-class="{'label-warning': vm.percent<30, 'label-info': vm.percent>=30 && vm.percent<70, 'label-success': vm.percent>=70}"
+                      data-ng-show="vm.overStar !== null || vm.showReviewBox === true">::vm.ratingLabel::</span>
+                <div data-ng-show="vm.showReviewBox" class="form-group form-control-default">
+                    <label for="review" class="sidebar-text">Review</label>
+                    <textarea class="form-control" rows="4" id="review"
+                              placeholder="Let other people know what you think of this dish, or simply leave it blank"
+                              data-ng-model="vm.dish.review"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="panel-heading">
+            <h4 class="panel-title">Do you have a photo of it?</h4>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <div>
+                    <label for="facilities" class="sidebar-text">Upload Dish Photo</label>
+                </div>
+                <file-field class="btn" ng-model="vm.dish.uploadImage"
+                            ng-class="{'btn-success':previewImage}" preview="previewImage">Select a photo of this dish</file-field>
+                <div data-ng-show="vm.dish.uploadImage != ''">
+                    <img ng-src="::previewImage::" class="img-responsive img-dish-preview">
+                    <button class="btn btn-default" data-ng-click="vm.resetUpload(); previewImage=null;"> Forget it </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="panel panel-default">
+        <div class="panel-body row">
+            <div class="col-xs-6 text-center">
+                <button type="submit" class="btn btn-primary btn-lg" data-ng-click="vm.submit();"><i class="fa fa-floppy-o"></i>Submit</button>
+            </div>
+            <div class="col-xs-6 text-center">
+                <button type="button" class="btn btn-default btn-lg" data-ng-click="vm.cancel();"><i class="fa fa-times fa-fw"></i> Close</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div data-ng-hide="vm.showAddDish" class="panel panel-default editor-form">
+    <div class="panel-heading">
+        <h4 class="panel-title">Thank you for adding the dish!</h4>
+    </div>
+    <div class="panel-body">
+        <div>The dish you just added: <strong>::vm.dish.selected.DishName::</strong> </div>
+        <div>at restaurant: <strong>::vm.dish.restaurant.name::</strong></div>
+        <div>Your dish is added to our system and displayed to the world immediately, because we totally trust your valuable content. After all, <span class="quote">a famous person has said people who love to eat are all nice people</span>. </div>
+
+        <h4>Do you have another loving dish to add?</h4>
+        <div class="equal-padding">
+            <button class="btn btn-success btn-lg" data-ng-click="vm.resetAddDish()">Add Another Dish</button>
+        </div>
+    </div>
+</div>

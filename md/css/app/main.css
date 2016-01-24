@@ -1,0 +1,193 @@
+.ui-view-main {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+md-item-content {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  box-sizing: border-box;
+  position: relative;
+  padding: 0;
+}
+.md-tile-left {
+  min-width: 56px;
+  margin-right: -16px;
+}
+.md-tile-right {
+  padding-right: 0px !important;
+}
+.md-tile-content {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 16px;
+  text-overflow: ellipsis;
+}
+.md-tile-content h3 {
+  margin: 0 0 3px 0;
+  font-weight: 400;
+  font-size: 1.1em;
+}
+.md-tile-content h4 {
+  margin: 0 0 3px 0;
+  font-weight: 400;
+  font-size: 0.9em;
+}
+.md-tile-content p {
+  margin: 0 0 3px 0;
+  font-size: 0.75em;
+}
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+md-content.md-default-theme {
+  background-color: #eee;
+}
+md-card {
+  background-color: #fff;
+}
+md-card h2:first-of-type {
+  margin-top: 0;
+}
+h2 {
+  font-weight: 400;
+}
+.md-toolbar-tools-bottom {
+  font-size: small;
+}
+.md-toolbar-tools-bottom :last-child {
+  opacity: 0.8;
+}
+md-toolbar:not(.md-hue-1),
+.md-fab {
+  fill: #fff;
+}
+md-sidenav {
+  fill: #737373;
+}
+md-sidenav ng-md-icon {
+  position: relative;
+  top: 5px;
+}
+.user-avatar {
+  border-radius: 99%;
+}
+a.md-button {
+  border-bottom: none;
+}
+[layout] {
+  box-sizing: border-box !important;
+  display: -webkit-flex !important;
+  display: -moz-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+/*have to overwrite this, otherwise the ng-md-icon always too low*/
+.md-button.md-fab ng-md-icon :not(.md-mini) {
+  margin-bottom: 16px;
+}
+.md-button.md-fab.md-mini ng-md-icon {
+  margin-left: 2px;
+}
+small.sub-heading {
+  font-size: 11px;
+}
+#shell-container {
+  min-height: 0;
+  max-height: 100%;
+}
+ng-md-icon {
+  transition: fill 750ms ease-in-out;
+}
+ng-md-icon > svg {
+  transition: width 750ms ease-in-out, height 750ms ease-in-out;
+}
+md-toolbar .md-warn {
+  background-color: #b2dba1;
+  color: #3c763d;
+}
+.card {
+  background: #fafafa;
+  transition: all 250ms;
+  box-shadow: none;
+}
+.card:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  -webkit-transform: translateY(-5px);
+  -ms-transform: translateY(-5px);
+      transform: translateY(-5px);
+}
+.clickable {
+  cursor: pointer;
+}
+.md-success {
+  background: linear-gradient(to bottom, #dff0d8 0, #c8e5bc 100%);
+  color: #3c763d;
+}
+.ngplus-overlay-background {
+  top: 0px;
+  left: 0px;
+  padding-left: 100px;
+  position: absolute;
+  z-index: 10000;
+  height: 100%;
+  width: 100%;
+  background-color: #808080;
+  opacity: 0.2;
+}
+.ngplus-overlay-content {
+  position: absolute;
+  /*border: 1px solid #000;*/
+  /*background-color: #fff;*/
+  font-weight: bold;
+  height: 100px;
+  width: 300px;
+  height: 15em;
+  width: 20em;
+  z-index: 10000;
+  text-align: center;
+}
+/*Optional Animations*/
+.dissolve-animation.ng-hide-remove,
+.dissolve-animation.ng-hide-add {
+  display: inline !important;
+  transition: 0.5s linear all;
+}
+.dissolve-animation.ng-hide-remove.ng-hide-remove-active,
+.dissolve-animation.ng-hide-add {
+  opacity: 1;
+}
+.dissolve-animation.ng-hide-add.ng-hide-add-active,
+.dissolve-animation.ng-hide-remove {
+  opacity: 0;
+}
+.vertical-gap-20 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+md-item-content .active {
+  background-color: #03A9F4;
+  color: white;
+}
+.center-content-container {
+  min-height: 400px;
+  width: 540px;
+  margin-top: 30px;
+  background-color: #fdfdfd;
+}
+.min-h-320 {
+  min-height: 320px;
+}
+#main-container {
+  z-index: 1;
+}

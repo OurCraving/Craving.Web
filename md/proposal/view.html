@@ -1,0 +1,78 @@
+<div>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h1>{{vm.getProposalTitle(vm.selectedProposal)}}</h1>
+    </div>
+  </md-toolbar>
+
+  <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+    <div class="md-toolbar-tools">
+      <h5 class="md-flex">{{vm.message}}</h5>
+    </div>
+  </md-toolbar>
+
+  <md-content flex md-scroll-y>
+    <ui-view layout="column" layout-fill layout-padding>
+      <div class="inset" hide-sm></div>
+
+      <div layout="row" layout-align="center center">
+        <md-card flex-gt-sm="90" flex-gt-md="80" flex="95" data-ng-hide="vm.selectedProposal != undefined">
+          <md-card-content class="md-warn" role="alert">
+            <strong>Oh snap!</strong> The proposal you want to open doesn't exist!
+          </md-card-content>
+        </md-card>
+
+        <md-card flex-gt-sm="90" flex-gt-md="80" flex="95" data-ng-show="vm.selectedProposal != undefined">
+          <md-card-content>
+            <div>
+              <h4>Owner: <span class="strong">{{vm.selectedProposal.CreatorName}}</span></h4>
+              <div layout>
+                <span class="label-grey-100">Created on: {{vm.formateDate(vm.selectedProposal.CreatedDate)}} </span>
+                <span class="label-grey-200" data-ng-show="vm.selectedProposal.IsExpired == true">Expired</span>
+              </div>
+            </div>
+
+            <md-divider></md-divider>
+
+            <h4>Options</h4>
+            <div data-ng-show="vm.selectedProposal.Items.length > 0 && vm.selectedProposal.IsExpired == false">
+              <md-list>
+                <md-list-item data-ng-repeat="item in vm.selectedProposal.Items">
+                  <div layout="column">
+                    <h3>{{item.RestaurantName}}</h3>
+                    <h4>
+                      <a ui-sref="dish.detail({id: item.DishId})" class="dishName">
+                                                {{item.DishName}}
+                                            </a>
+                    </h4>
+                    <div layout layout-fill>
+                      <input id="'chkVote' + $index" type="checkbox" data-ng-model="vm.votes[item.RestaurantId]" data-ng-change="vm.voteItem(item);"> &nbsp;
+                      <label class="clickable" for="'chkVote' + $index">I want to eat there</label>
+                      <span flex></span>
+                    </div>
+                    <div layout layout-fill>
+                      <strong>Votes:</strong>
+                      <ng-md-icon icon="person" size="16" data-ng-repeat="i in vm.getIterations(item.Votes.length)"></ng-md-icon>
+                      <span flex></span>
+                    </div>
+                  </div>
+                  <md-divider ng-if="!$last"></md-divider>
+                </md-list-item>
+              </md-list>
+            </div>
+          </md-card-content>
+        </md-card>
+      </div>
+
+      <div layout="row" layout-align="center center" data-ng-show="vm.selectedProposal != undefined">
+        <md-card flex-gt-sm="90" flex-gt-md="80" flex="95">
+          <md-card-content style="padding:20px;">
+            <dir-disqus disqus-shortname="ourcraving" disqus-identifier="{{vm.selectedProposal.Id}}" disqus-url="{{vm.proposalUrl}}" disqus-title="{{vm.getProposalTitle(vm.selectedProposal)}}" ready-to-bind="{{vm.isLoaded}}">
+            </dir-disqus>
+          </md-card-content>
+        </md-card>
+      </div>
+    </ui-view>
+  </md-content>
+
+</div>

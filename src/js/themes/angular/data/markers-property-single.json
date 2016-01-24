@@ -1,0 +1,47 @@
+{
+	"markers": [
+		{
+			"latitude": 57.79724753642693,
+			"longitude": 12.050237522090129,
+			"name": "Hello Taxi",
+			"location": "01 129392",
+			"inner_icon": "md md-local-taxi",
+			"details_url": "#/property/property",
+			"template": "real-estate-map-pop_icon",
+			"icon": "gas-07"
+		},
+		{
+			"latitude": 57.79752197914331,
+			"longitude": 12.051305041278056,
+			"title": "Hotel Lorensberg",
+			"description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+			"image": "images\/photodune-3979102-superb-backyard-xs.jpg",
+			"details_url": "#/property/property",
+			"ribbon_mark_text": "Sell",
+			"ribbon_mark_class": "ribbon-primary",
+			"price": "1,129,450",
+			"template": "real-estate-map-pop-1",
+			"icon": "house-02"
+		},
+		{
+			"latitude": 57.79778836004782,
+			"longitude": 12.052299951552868,
+			"name": "The bar's name",
+			"location": "Location of the bar",
+			"inner_icon": "md md-local-bar",
+			"details_url": "#/property/property",
+			"template": "real-estate-map-pop_icon",
+			"icon": "bar-07"
+		},
+		{
+			"latitude": 57.7969135730701,
+			"longitude": 12.052112196921826,
+			"name": "Hello Taxi",
+			"location": "01 129392",
+			"inner_icon": "md md-local-taxi",
+			"details_url": "#/property/property",
+			"template": "real-estate-map-pop_icon",
+			"icon": "taxi-07"
+		}
+	]
+}

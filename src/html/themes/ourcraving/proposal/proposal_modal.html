@@ -1,0 +1,16 @@
+﻿<div class="modal-header">
+    <h4 class="modal-title"><i class="fa fa-cutlery"></i> ::vm.getProposalTitle(vm.Proposal)::</h4>
+</div>
+<div class="modal-body text-center">
+    <div class="horizontal">
+        <div class="vertical">
+            <h4 data-ng-show="vm.AlreadyIn == true" class="danger-color">::vm.Dish.Name:: is already in to the craving proposal [::vm.getProposalTitle(vm.Proposal)::]</h4>
+            <h4 data-ng-show="vm.AlreadyIn == false">::vm.Dish.Name:: has been added to the craving proposal [::vm.getProposalTitle(vm.Proposal)::]</h4>
+            <a ui-sref="proposal.home.detail({key:vm.Proposal.Key})" class="btn btn-success" ng-click="vm.close();">Open Proposal</a>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <a class="btn btn-primary" ng-click="vm.close()">Close</a>
+</div>

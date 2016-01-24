@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" data-ng-class="vm.checkActive('basic')">
+                    <a ui-sref="profile.home.detail({selected:'basic'})" ui-sref-opts="{ reload: true }">Baisc Information</a>
+                </li>
+                <li role="presentation" data-ng-class="vm.checkActive('dislike')">
+                    <a ui-sref="profile.home.detail({selected:'dislike'})" ui-sref-opts="{ reload: true }">Dislike Cravings</a>
+                </li>
+                <li role="presentation" data-ng-class="vm.checkActive('cravinghistory')">
+                    <a ui-sref="profile.home.detail({selected:'cravinghistory'})" ui-sref-opts="{ reload: true }">My Craving History</a>
+                </li>
+                <li role="presentation" data-ng-class="vm.checkActive('messages')">
+                    <a ui-sref="profile.home.detail({selected:'messages'})" ui-sref-opts="{ reload: true }">Messages</a>
+                </li>
+                <li role="presentation" data-ng-class="vm.checkActive('friends')">
+                    <a ui-sref="profile.home.detail({selected:'friends'})" ui-sref-opts="{ reload: true }">Friends</a>
+                </li>
+                <li role="presentation" data-ng-class="vm.checkActive('updatepassword')">
+                    <a ui-sref="profile.home.detail({selected:'updatepassword'})" ui-sref-opts="{ reload: true }">Update Password</a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="col-md-9 panel panel-default ">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li>Profile</li>
+                    <li class="active">::vm.title::</li>
+                </ol>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div ng-include="vm.selectedItemPage"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

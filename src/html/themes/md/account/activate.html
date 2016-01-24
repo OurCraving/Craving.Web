@@ -1,0 +1,21 @@
+﻿<div layout="column" layout-fill layout-align="start center">
+    <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+        <div class="md-toolbar-tools">
+            <h5 class="md-flex">{{vm.message}}</h5>
+        </div>
+    </md-toolbar>
+    <div layout-align="center start" class="center-content-container md-whiteframe-z2">
+        <div layout-padding class="min-h-320">
+            <div layout="column" flex ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+                <img src="images/cannot_activate.jpg" alt="faulty account activation" ng-show="vm.showFaulty" class="img-responsive"
+                     style="width:100%"/>
+            </div>
+        </div>
+        <div layout="column">
+            <div layout="row" layout-align="end center">
+                <md-button ui-sref="login" class="md-primary" ng-show="vm.savedSuccessfully"> Login Now </md-button>
+                <md-button ui-sref="login({selected:1})" class="md-primary" ng-show="!vm.savedSuccessfully"> Reset My Password </md-button>
+            </div>
+        </div>
+    </div>
+</div>

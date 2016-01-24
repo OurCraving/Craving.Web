@@ -1,0 +1,98 @@
+﻿crave-button.dish-group {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.dish-item {
+    -webkit-transition: background, 0.1s;
+    -moz-transition: background, 0.1s;
+    -ms-transition: background, 0.1s;
+    -o-transition: background, 0.1s;
+    transition: background, 0.1s;
+    background: white;
+    font-size: 18px;
+    min-height: 62px;
+    line-height: 17px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    clear: both;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 0 10px;
+    margin: 0 5px;
+    position: relative;
+}
+
+.dish-item:hover {
+    background: #f7f7fa;
+    text-decoration: none;
+}
+
+.dish-item:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.dish-item .crave-button {
+    font-size: 13px;
+    height: 44px;
+    width: 25px;
+}
+
+.dish-item-name {
+    text-decoration: none;
+    color: #534540;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 6px 2px 0 0;
+    line-height: 22px;
+    margin-right: 5px;
+}
+
+
+@media (max-width: 600px) {
+    .dish-item-name {
+        font-size: 16px;
+    }
+}
+
+
+.dish-item-creator {
+    display: inline-block;
+    overflow: hidden;
+    margin: 3px;
+    width:180px;
+    text-align:center;
+}
+
+.dish-item-content {
+    display: inline-block;
+}
+
+.dish-item-image {
+    display: inline-block;
+    float: right;
+    padding-right: 15px;
+}
+
+.img-dish {
+    width: 60px;
+    height: 60px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 16px;
+    box-sizing: content-box;
+}
+
+.dish-item-review {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    padding: 6px 0 0 0;
+}

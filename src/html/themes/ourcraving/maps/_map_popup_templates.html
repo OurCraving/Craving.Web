@@ -1,0 +1,70 @@
+<script id="real-estate-map-pop-1" type="text/x-handlebars-template">
+    <div class="padding-none full">
+        <div class="ribbon-heading text-h5 {% raw %}{{ ribbon_mark_class }}{% endraw %} absolute {% if rtl %}right{% else %}left{% endif %}inline margin-none">{% raw %}{{ ribbon_mark_text }}{% endraw %}</div>
+        <div class="cover overlay cover-image-full margin-none">
+            <a href="{% raw %}{{ details_url }}{% endraw %}" class="thumb" data-height="150px">
+                <img src="{% raw %}{{ image }}{% endraw %}" alt="image" class="img-responsive">
+            </a>
+        </div>
+        <div class="list-group margin-none">
+            <div class="list-group-item">
+                <a href="{% raw %}{{ details_url }}{% endraw %}" class="btn btn-primary btn-circle pull-right{% if rtl %} flip{% endif %}">
+                    <i class="fa fa-shopping-cart"></i>
+                </a>
+                <h4 class="margin-v-0-5">{% raw %}{{ title }}{% endraw %}</h4>
+                <p class="small">
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                    <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                </p>
+                <p>{% raw %}{{ description }}{% endraw %}</p>
+                <label class="label label-grey-100">&euro;{% raw %}{{ price }}{% endraw %}</label>&nbsp;
+                <small>
+                    {% if (type == 'individual') %}
+                    <i class="fa fa-fw icon-user-1"></i> Individual
+                    {% endif %}
+                    {% if (!type || type == 'agency') %}
+                    <i class="fa fa-fw icon-home-fill-1"></i> Agency
+                    {% endif %}
+                </small>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="real-estate-map-pop_home" type="text/x-handlebars-template">
+    <div class="padding-none">
+        <div class="ribbon-heading text-h5 {% raw %}{{ ribbon_mark_class }}{% endraw %} absolute left inline margin-none">
+            {% raw %}{{ ribbon_mark_text }}{% endraw %}
+        </div>
+        <div class="cover cover-image-full margin-none">
+            <a href="{% raw %}{{ details_url }}{% endraw %}" class="thumb" data-height="150px">
+                <img src="{% raw %}{{ image }}{% endraw %}" alt="image" class="img-responsive">
+            </a>
+        </div>
+        <div class="text-center">
+            <h4 class="text-primary margin-bottom-none">{% raw %}{{ title }}{% endraw %}</h4>
+            <p class="h5 text-muted margin-v-5-15">{% raw %}{{ location }}{% endraw %}</p>
+        </div>
+    </div>
+</script>
+<script id="real-estate-map-pop_profile" type="text/x-handlebars-template">
+    <div class="text-center">
+        <p><img src="{% raw %}{{ image }}{% endraw %}" alt="" class="img-circle" /></p>
+        <h4><a href="{% raw %}{{ details_url }}{% endraw %}" class="text-grey-700">{% raw %}{{ name }}{% endraw %}</a></h4>
+        <a href="mailto:{% raw %}{{ email }}{% endraw %}">{% raw %}{{ email }}{% endraw %}</a><br />
+        <p class="text-muted"><i class="fa fa-user fa-fw"></i>Agent <i class="fa fa-home fa-fw"></i>{% raw %}{{ no_properties }}{% endraw %} Properties</p>
+    </div>
+</script>
+<script id="real-estate-map-pop_icon" type="text/x-handlebars-template">
+    <div>
+        <div class="text-center">
+            <div class="h1 text-grey-300">
+                <i class="{% raw %}{{ inner_icon }}{% endraw %}"></i>
+            </div>
+            <p><a href="{% raw %}{{ details_url }}{% endraw %}" class="h4 text-primary">{% raw %}{{ name }}{% endraw %}</a></p>
+            <p>{% raw %}{{ location }}{% endraw %}</p>
+        </div>
+    </div>
+</script>

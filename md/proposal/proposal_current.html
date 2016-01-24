@@ -1,0 +1,124 @@
+<div>
+  <md-toolbar data-ng-show="vm.titleInEdit == false && vm.selectedProposal != undefined">
+    <div class="md-toolbar-tools">
+      <md-button ng-click="vm.toggleSidenav('left')" hide-gt-md aria-label="Menu">
+        <ng-md-icon icon="menu"></ng-md-icon>
+      </md-button>
+      <h3>
+        <a href="" data-ng-click="vm.titleInEdit = true" title="Edit Proposal Title">{{vm.getProposalTitle(vm.selectedProposal)}}</a>
+      </h3>
+      <md-button class="md-icon-button" data-ng-click="vm.titleInEdit = true" aria-label="Edit the name of this craving proposal">
+        <ng-md-icon icon="edit"></ng-md-icon>
+      </md-button>
+      <span flex></span>
+    </div>
+  </md-toolbar>
+
+  <md-toolbar data-ng-show="vm.titleInEdit && vm.selectedProposal != undefined">
+    <div class="md-toolbar-tools">
+      <md-button ng-click="vm.toggleSidenav('left')" hide-gt-md aria-label="Menu">
+        <ng-md-icon icon="menu"></ng-md-icon>
+      </md-button>
+      <input id="proposalName" type="text" class="form-control" autofocus onfocus="this.select();" ui-keypress="{enter:'vm.saveProposalName()'}" aria-label="Name of this proposal, e.g. My Lunch Proposal" placeholder="Name of this proposal, e.g. My Lunch Proposal"
+      data-ng-model="vm.updatingProposalName" flex>
+      <md-button class="md-primary md-raised" data-ng-click="vm.saveProposalName();">Save</md-button>
+      <md-button class="md-raised" data-ng-click="vm.updatingProposalName = vm.getProposalTitle(vm.selectedProposal);vm.titleInEdit = false;">Cancel</md-button>
+    </div>
+  </md-toolbar>
+
+  <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+    <div class="md-toolbar-tools">
+      <h5 class="md-flex">{{vm.message}}</h5>
+    </div>
+  </md-toolbar>
+
+  <md-content flex md-scroll-y>
+    <ui-view layout="column" layout-fill layout-padding>
+      <div class="inset" hide-sm></div>
+
+      <div layout="row" layout-align="center center">
+        <md-card flex-gt-sm="90" flex-gt-md="80" flex="95" data-ng-show="vm.selectedProposal != undefined">
+          <md-card-content>
+            <div>
+              <div layout layout-fill layout-align="center center">
+                <p layout-align="center center" layout>
+                  <span class="label-grey-100">Created on: {{vm.formateDate(vm.selectedProposal.CreatedDate)}} </span>
+                  <span class="label-grey-200" data-ng-show="vm.isExpired(vm.selectedProposal)">Expired</span>
+                </p>
+                <span flex></span>
+                <md-button class="md-accent md-raised" ng-confirm-click="vm.removeProposal(vm.selectedProposal);" confirm-msg="If you delete a craving proposal, you will never see it again." data-ng-show="vm.isExpired(vm.selectedProposal);">Remove</md-button>
+                <md-button class=" md-raised" data-ng-click="vm.extendProposal(vm.selectedProposal);" data-ng-show="vm.isExpired(vm.selectedProposal);">Extend</md-button>
+                <md-button class=" md-raised" data-ng-click="vm.expireProposal(vm.selectedProposal);" data-ng-show="vm.isExpired(vm.selectedProposal) == false;">Expire</md-button>
+              </div>
+            </div>
+            <div class="inset" hide-sm></div>
+            <div>
+              <div layout layout-fill>
+                <input flex type="text" readonly="readonly" data-ng-model="vm.proposalUrl" onclick="this.select();">
+                <md-button class="md-icon-button md-raised" data-ng-click="vm.copyUrl();" title="Copy to my clipboard">
+                  <ng-md-icon icon="content_copy" size="20"></ng-md-icon>
+                </md-button>
+              </div>
+            </div>
+            <h3>Options</h3>
+            <div class="md-warn md-hue-3" role="alert" data-ng-show="vm.selectedProposal.Items.length == 0 ">
+              <strong>Snap,</strong> your craving proposal has no option yet.
+              <br/> Find some craving dishes and add them to the proposal.
+              <br/> Then generate a single URL to discuss with your friends.
+            </div>
+
+            <div data-ng-show="vm.selectedProposal.Items.length > 0">
+              <md-list>
+                <md-list-item data-ng-repeat="item in vm.selectedProposal.Items">
+                  <div layout="column" flex>
+                    <div layout layout-fill>
+                      <h4>{{item.RestaurantName}}</h4>
+                      <span flex></span>
+                      <md-button class="md-raised md-warn md-icon-button" data-ng-click="vm.removeItem(item);">
+                        <md-tooltip>remove this option</md-tooltip>
+                        <ng-md-icon icon="delete" size="20"></ng-md-icon>
+                      </md-button>
+                    </div>
+                    <h4>
+                      <a ui-sref="dish.detail({id: item.DishId})" class="dishName">
+                                                {{item.DishName}}
+                                            </a>
+                    </h4>
+                    <!--<md-checkbox data-ng-model="vm.votes[item.RestaurantId]" aria-label="Checkbox {{$index}}">
+                                                I want to eat there
+                                            </md-checkbox>-->
+                    <div layout layout-fill>
+                      <input id="'chkVote' + $index" type="checkbox" data-ng-model="vm.votes[item.RestaurantId]" data-ng-change="vm.voteItem(item);"> &nbsp;
+                      <label class="clickable" for="'chkVote' + $index">I want to eat there</label>
+                      <span flex></span>
+                    </div>
+                    <div layout layout-fill>
+                      <strong>Votes:</strong>
+                      <ng-md-icon icon="person" size="16" data-ng-repeat="i in vm.getIterations(item.Votes.length)"></ng-md-icon>
+                      <span flex></span>
+                    </div>
+                  </div>
+                </md-list-item>
+              </md-list>
+            </div>
+          </md-card-content>
+        </md-card>
+
+        <md-card flex-gt-sm="90" flex-gt-md="80" flex="95" data-ng-hide="vm.selectedProposal != undefined">
+          <<md-card-content class="md-warn">
+            <strong>Oh snap!</strong> The proposal you want to open doesn't exist!
+            </md-card-content>
+        </md-card>
+
+      </div>
+      <div layout="row" layout-align="center center" data-ng-show="vm.selectedProposal != undefined">
+        <md-card flex-gt-sm="90" flex-gt-md="80" flex="95">
+          <md-card-content style="padding:20px;">
+            <dir-disqus disqus-shortname="ourcraving" disqus-identifier="{{vm.selectedProposal.Id}}" disqus-url="{{vm.proposalUrl}}" disqus-title="{{vm.getProposalTitle(vm.selectedProposal)}}" ready-to-bind="{{vm.isLoaded}}">
+            </dir-disqus>
+          </md-card-content>
+        </md-card>
+      </div>
+    </ui-view>
+  </md-content>
+</div>

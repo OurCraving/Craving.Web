@@ -1,0 +1,315 @@
+﻿@import "_ourcraving_mixmin.less";
+
+#message_panel {
+    margin: 30px 0 10px 0;
+}
+
+.description {
+    list-style: outside;
+    margin: 0;
+    padding: 0 8px 5px 8px;
+}
+
+.form-profile {
+    padding: 0 15px 5px 15px;
+    max-width: 600px;
+
+    .form-profile-heading {
+        margin-bottom: 10px;
+    }
+
+    .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+
+        &:focus {
+            z-index: 2;
+        }
+    }
+
+    > div {
+        margin: 15px 0;
+    }
+}
+
+.img-avatar {
+    max-width: 80px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 1px 2px;
+}
+
+.img-avatar {
+    max-width: 120px;
+    max-height: 120px;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 4px;
+}
+
+.dish-group {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+
+    .img-avatar {
+        max-width: 40px;
+        max-height: 40px;
+        width: auto;
+        height: auto;
+        display: inline-block !important;
+        margin: 1px 2px;
+    }
+
+    .img-dish-preview {
+        width: 120px;
+        max-height: 100px;
+        box-shadow: 10px 10px inset rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 991px) {
+        .img-dish-preview {
+            max-height:none;
+            width:auto !important;
+        }
+    }
+
+    .dish-item {
+        -webkit-transition: background, 0.1s;
+        -moz-transition: background, 0.1s;
+        -ms-transition: background, 0.1s;
+        -o-transition: background, 0.1s;
+        transition: background, 0.1s;
+        background: white;
+        font-size: 18px;
+        min-height: 62px;
+        line-height: 17px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        clear: both;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -ms-border-radius: 3px;
+        border-radius: 3px;
+        cursor: pointer;
+        margin: 0 -10px 5px 0;
+        padding: 10px;
+        position: relative;
+
+        .panel-body {
+            padding: 0 5px;
+        }
+
+        &:hover {
+            background: #f7f7fa;
+            text-decoration: none;
+        }
+
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .card-target a {
+            -webkit-transition: color 0.2s;
+
+            &:hover {
+                color: #EE6E73;
+                text-decoration: none;
+            }
+        }
+
+        .dish-item-restaurant-count {
+            color: #666;
+            font-size: 14px;
+            margin: 5px 0 0 0;
+        }
+    }
+}
+
+.tagcloud {
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: center;
+
+    a {
+        display: inline-block;
+        font-size: 14px;
+        text-align: center;
+        white-space: nowrap;
+        margin: 5px 8px 5px 8px;
+        color: #ffffff;
+        background: #DE2939;
+        border: 1px solid #014134;
+        cursor: pointer;
+        border-radius: 5px;
+
+        span {
+            display: block;
+            -moz-min-width: 80px;
+            -ms-min-width: 80px;
+            -o-min-width: 80px;
+            -webkit-min-width: 80px;
+            min-width: 80px;
+            min-height: 28px;
+            line-height: 26px;
+            text-align: center;
+            padding-left: 3px;
+            padding-right: 3px;
+        }
+
+        &:hover {
+            color: #000;
+            background: #ffffff;
+        }
+    }
+}
+
+.location-header {
+    margin-right: 1em;
+    margin-top: 6px;
+}
+
+.BoxShadowHelper(@level: 0) {
+    & when (@level = 0) {
+        box-shadow: none;
+    }
+
+    & when (@level = 1) {
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+
+    & when (@level = 2) {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
+
+    & when (@level = 3) {
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+
+    & when (@level = 4) {
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+
+    & when (@level = 5) {
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    }
+}
+
+.card {
+    background: #fafafa;
+    -webkit-transition: all 250ms;
+    -moz-transition: all 250ms;
+    transition: all 250ms;
+    .BoxShadowHelper(0);
+
+    &:hover {
+        .BoxShadowHelper(2);
+        -webkit-transform: translateY(-5px);
+        -moz-transform: translateY(-5px);
+        transform: translateY(-5px);
+    }
+}
+
+.full-width {
+    width: 100%;
+    text-align: center;
+}
+
+.location-arrow-wrapper {
+    border-radius: 20px;
+    background-color: white;
+    border: 1px solid black;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    text-align: center;
+    padding: 0;
+    cursor: pointer;
+    transition: all 1s ease;
+
+    &:hover {
+        transform: rotate(90deg);
+        color: #16ae9f;
+    }
+}
+
+.avatar-thumbnail {
+    margin-top: 20px;
+    float: right;
+    margin-right: 10px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+#content {
+    .panel-title {
+        color: #26a69a;
+        font-weight: 600;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}
+
+.pull-right-container {
+    float: right;
+    position: absolute;
+    right: 20px;
+    z-index: 1024;
+    margin-top: 6px;
+
+    a {
+        margin-right: 6px;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+div.horizontal {
+    display: flex;
+    justify-content: center;
+}
+
+div.vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/*overwrite these bootstrap style*/
+.navbar-fixed-top .navbar-collapse,
+.navbar-fixed-bottom .navbar-collapse {
+  max-height: 400px;
+}
+
+.modal-content {
+    margin-top: 2em;
+}
+
+.btn-group > .btn + .dropdown-toggle {
+    margin-left:-3px;
+}
+
+.padding-loop (@padding-iterations);
+
+.right-loop(@right-iterations);
+
+.top-loop(@top-iterations);
+
+.spacing-h-class('padding-h', padding);

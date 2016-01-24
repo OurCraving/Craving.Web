@@ -1,0 +1,116 @@
+<!-- Vendor CSS BUNDLE
+    Includes styling for all of the 3rd party libraries used with this module, such as Bootstrap, Font Awesome and others.
+    TIP: Using bundles will improve performance by reducing the number of network requests the client needs to make when loading the page. -->
+{% if bundle -%}
+    <link href="[[cwd]]css/vendor/all{% if config.minify %}.min{% endif %}.css" rel="stylesheet">
+{% else -%}
+    <!-- <link href="[[ cwd ]]css/vendor/all{% if config.minify %}.min{% endif %}.css" rel="stylesheet"> -->
+{% endif %}
+
+{% if css_vendor !== false %}
+    <!-- Vendor CSS Standalone Libraries
+        NOTE: Some of these may have been customized (for example, Bootstrap).
+        See: src/less/themes/{theme_name}/vendor/ directory -->
+    {% for module in css_vendor -%}
+
+        {%- if module|typeof('object') -%}
+
+            {%- if !module|array_key_exists("themes") and !module|array_key_exists("exclude") -%}
+                {%- if bundle -%}
+                    <!-- <link href="[[ cwd ]]css/[[ module.name ]]{% if config.minify %}.min{% endif %}.css" rel="stylesheet"> -->
+                {%- else -%}
+                    <link href="[[ cwd ]]css/[[ module.name ]]{% if config.minify %}.min{% endif %}.css" rel="stylesheet">
+                {%- endif -%}
+            {%- endif -%}
+
+            {%- if module.themes|inArray(config.theme) or (module|array_key_exists("exclude") and !module.exclude|inArray(config.theme)) -%}
+                {%- if bundle -%}
+                    <!-- <link href="[[ cwd ]]css/[[ module.name ]]{% if config.minify %}.min{% endif %}.css" rel="stylesheet"> -->
+                {%- else -%}
+                    <link href="[[ cwd ]]css/[[ module.name ]]{% if config.minify %}.min{% endif %}.css" rel="stylesheet">
+                {%- endif -%}
+            {%- else -%}
+                <!-- <link href="[[ cwd ]]css/[[ module.name ]]{% if config.minify %}.min{% endif %}.css" rel="stylesheet"> -->
+            {%- endif -%}
+
+        {%- else -%}
+            {%- if bundle -%}
+                <!-- <link href="[[ cwd ]]css/[[ module ]]{% if config.minify %}.min{% endif %}.css" rel="stylesheet"> -->
+            {%- else -%}
+                <link href="[[ cwd ]]css/[[ module ]]{% if config.minify %}.min{% endif %}.css" rel="stylesheet">
+            {%- endif -%}
+        {%- endif -%}
+
+    {% endfor -%}
+{% endif %}
+
+<!-- APP CSS BUNDLE [css/app/app.css]
+INCLUDES:
+    - The APP CSS CORE styling required by the "[[config.theme]]" module, also available with main.css - see below;
+    - The APP CSS STANDALONE modules required by the "[[config.theme]]" module;
+NOTE:
+    - This bundle may NOT include ALL of the available APP CSS STANDALONE modules;
+      It was optimised to load only what is actually used by the "[[config.theme]]" module;
+      Other APP CSS STANDALONE modules may be available in addition to what's included with this bundle.
+      See src/less/themes/[[config.theme]]/app.less
+TIP:
+    - Using bundles will improve performance by greatly reducing the number of network requests the client needs to make when loading the page. -->
+{% if bundle -%}
+    <link href="[[ cwd ]]css/app/app{% if config.minify %}.min{% endif %}.css" rel="stylesheet">
+{% else -%}
+    <!-- <link href="[[ cwd ]]css/app/app{% if config.minify %}.min{% endif %}.css" rel="stylesheet"> -->
+{% endif %}
+
+<!-- App CSS CORE
+This variant is to be used when loading the separate styling modules -->
+{% if bundle -%}
+    <!-- <link href="[[ cwd ]]css/app/main{% if config.minify %}.min{% endif %}.css" rel="stylesheet"> -->
+{% else -%}
+    <link href="[[ cwd ]]css/app/main{% if config.minify %}.min{% endif %}.css" rel="stylesheet">
+{% endif %}
+
+{% if css_modules !== false %}<!-- App CSS Standalone Modules
+    As a convenience, we provide the entire UI framework broke down in separate modules
+    Some of the standalone modules may have not been used with the current theme/module
+    but ALL modules are 100% compatible -->
+
+    {% for module in css_modules -%}
+
+        {%- if module|typeof('object') -%}
+
+            {%- if !module|array_key_exists("themes") and !module|array_key_exists("exclude") -%}
+                {%- if bundle -%}
+                <!-- <link href="[[ cwd ]]css/[[ module.name ]]{% if config.minify %}.min{% endif %}.css" rel="stylesheet" /> -->
+                {%- else -%}
+                <link href="[[ cwd ]]css/[[ module.name ]]{% if config.minify %}.min{% endif %}.css" rel="stylesheet" />
+                {%- endif -%}
+            {%- endif -%}
+
+            {%- if module.themes|inArray(config.theme) or (module|array_key_exists("exclude") and !module.exclude|inArray(config.theme)) -%}
+                {%- if bundle -%}
+                <!-- <link href="[[ cwd ]]css/[[ module.name ]]{% if config.minify %}.min{% endif %}.css" rel="stylesheet" /> -->
+                {%- else -%}
+                <link href="[[ cwd ]]css/[[ module.name ]]{% if config.minify %}.min{% endif %}.css" rel="stylesheet" />
+                {%- endif -%}
+            {%- else -%}
+                <!-- <link href="[[ cwd ]]css/[[ module.name ]]{% if config.minify %}.min{% endif %}.css" rel="stylesheet" /> -->
+            {%- endif -%}
+
+        {%- else -%}
+            {%- if bundle -%}
+            <!-- <link href="[[ cwd ]]css/[[ module ]]{% if config.minify %}.min{% endif %}.css" rel="stylesheet" /> -->
+            {%- else -%}
+            <link href="[[ cwd ]]css/[[ module ]]{% if config.minify %}.min{% endif %}.css" rel="stylesheet" />
+            {%- endif -%}
+        {%- endif -%}
+
+    {% endfor -%}
+{% endif %}
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!-- If you don't need support for Internet Explorer <= 8 you can safely remove these -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->

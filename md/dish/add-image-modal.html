@@ -1,0 +1,30 @@
+<md-dialog aria-label="{{vm.title}}" layout="column" style="min-height:600px;">
+  <md-toolbar class="md-hue-1">
+    <div class="md-toolbar-tools">
+      <h2>Add new image to dish {{vm.dish.Name}}</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="vm.close();">
+        <ng-md-icon icon="close" aria-label="Close dialog"></ng-md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+    <div class="md-toolbar-tools">
+      <h5 class="md-flex">{{vm.message}}</h5>
+    </div>
+  </md-toolbar>
+  <md-content flex class="md-padding" layout="column" layout-align="center center" layout-margin layout-padding>
+    <div>
+      <label>Upload Dish Photo</label>
+    </div>
+    <file-field class="md-button md-raised" ng-model="vm.uploadImage" ng-class="{'md-success':previewImage}" preview="previewImage" on-file-read="vm.onFileRead(file, content);">Select a photo of this dish</file-field>
+    <div flex data-ng-show="vm.uploadImage != ''" class="uploadPreviewContainer">
+      <img ng-src="{{previewImage}}" class="img-responsive img-dish-preview">
+    </div>
+    <button class="md-button md-warn" data-ng-show="vm.uploadImage != ''" data-ng-click="previewImage=null; vm.resetUpload();"> Forget it </button>
+  </md-content>
+  <div class="md-actions" layout="row" flex="5" layout-align="center center">
+    <md-button ng-click="vm.close();"> Close </md-button>
+    <md-button ng-click="vm.submit();" class="md-primary"> Submit </md-button>
+  </div>
+</md-dialog>

@@ -1,0 +1,30 @@
+﻿<md-dialog aria-label="{{vm.title}}" id="loginModal" layout="column" style="min-height:480px;">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            <h2>Choose a name for your proposal</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="vm.close();">
+                <ng-md-icon icon="close" aria-label="Close dialog"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+        <div class="md-toolbar-tools">
+            <h5 class="md-flex">{{vm.message}}</h5>
+        </div>
+    </md-toolbar>
+    <md-content class="md-padding" flex layout="row" layout-align="center center">
+        <form ng-submit="vm.submit(vm.proposalData)" flex>
+            <md-input-container>
+                <label>Proposal Name (e.g. My Lunch Plan)</label>
+                <input autofocus aria-label="Proposal Name"
+                       maxlength="100" data-ng-model="vm.proposalData.name" />
+            </md-input-container>
+        </form>
+    </md-content>
+    <div class="md-actions" layout="row" flex="5" layout-align="center center">
+        <md-button ng-click="vm.close();"> Close </md-button>
+        <md-button data-ng-click="vm.submit(vm.proposalData)" class="md-primary">Submit</md-button>
+    </div>
+</md-dialog>
+

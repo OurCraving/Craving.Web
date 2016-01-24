@@ -1,0 +1,33 @@
+<div data-ng-controller="AdminFilesController as vm">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button ng-click="vm.toggleSidenav('left')" hide-gt-md aria-label="Menu">
+        <ng-md-icon icon="menu"></ng-md-icon>
+      </md-button>
+      <h3 class="md-title">
+        Recent Files
+      </h3>
+      <span flex></span>
+    </div>
+  </md-toolbar>
+
+  <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+    <div class="md-toolbar-tools">
+      <h5 class="md-flex">{{vm.message}}</h5>
+    </div>
+  </md-toolbar>
+
+  <md-content flex md-scroll-y>
+    <ui-view layout="column" layout-fill layout-padding>
+      <div class="inset" hide-sm></div>
+
+      <div layout="row" layout-align="center center">
+        <md-card flex-gt-sm="90" flex-gt-md="80">
+          <md-card-content>
+            <h1>Admin Files Pending</h1>
+          </md-card-content>
+        </md-card>
+      </div>
+    </ui-view>
+  </md-content>
+</div>

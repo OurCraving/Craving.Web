@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="MainController" ng-class="app.settings.htmlClass">
+<head>
+    <title ng-bind="app.settings.pageTitle">OurCraving - where you find your cravings</title>
+    <!-- [regular begin] -->
+    <link rel="stylesheet" href="css/vendor_material_all.css">
+    <link rel="stylesheet" href="css/app/app.css">
+    <!-- [regular begin] -->
+    <!-- [minify begin] -->
+    <!--<link rel="stylesheet" href="css/min/vendor_material_all.min.css">
+    <link rel="stylesheet" href="css/app/app.min.css">-->
+    <!-- [minify end] -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <meta name="viewport" content="initial-scale=1" />
+</head>
+<body>
+    <div layout="row" data-ui-view="app" class="ui-view-main"></div>
+    <div ngplus-overlay
+         ngplus-overlay-delay-in="50"
+         ngplus-overlay-delay-out="700"
+         ngplus-overlay-animation="dissolve-animation">
+        <div layout="row" layout-sm="column" layout-align="space-around">
+            <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+        </div>
+        <div class="page-spinner-message overlay-message">{{app.settings.busyMessage || 'Loading...'}}</div>
+    </div>
+
+    <!-- [regular begin] -->
+    <script src="js/material/all.js"></script>
+    <script src="js/app/app.js"></script>
+    <!-- [regular end] -->
+    <!-- [minify begin] -->
+    <!--<script src="js/all.min.js"></script>
+    <script src="js/app.min.js"></script>-->
+    <!-- [minify end] -->
+    <script src="js/vendor/core/bootstrap.min.js"></script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments);
+            },
+            i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-67694096-1', 'auto');
+        //ga('send', 'pageview');
+    </script>
+</body>
+</html>

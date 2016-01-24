@@ -1,0 +1,15 @@
+﻿<md-toolbar class="md-hue-1" id="header-toolbar" ng-controller="HeaderController as vm">
+    <div class="md-toolbar-tools" layout="row" layout-align="start center" layout-fill>
+        <md-button class="md-icon-button" ui-sref="app.home" aria-label="go home of OurCraving"><ng-md-icon icon="restaurant_menu"></ng-md-icon></md-button>
+        <div hide-sm layout-fill>
+            <a ui-sref="app.home" class="site-header">
+                <h2 class="md-title" style="line-height: 20px; margin-top: 10px; margin-bottom: 0; font-weight: 600;">
+                    OurCraving
+                </h2></a>
+            <small class="sub-heading">where you find your cravings</small>
+        </div>
+        <span flex></span>
+        <div ng-include="'layout/header.location.html'"></div>
+        <div ng-include="'layout/header.commands.html'"></div>
+    </div>
+</md-toolbar>

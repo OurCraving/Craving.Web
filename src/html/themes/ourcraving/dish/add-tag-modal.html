@@ -1,0 +1,16 @@
+﻿<div class="modal-header">
+    <h4 class="modal-title"><i class="fa fa-cutlery"></i> Add new craving tags to dish ::vm.dish.Name::</h4>
+</div>
+<form ng-submit="vm.submit(vm.selectedCravings)">
+    <div class="modal-body">
+        <div class="form-group form-control-default">
+            <label for="match">Matched Cravings</label>
+            <craving-select selected-craving="vm.selectedCravings"></craving-select>
+        </div>
+    </div>
+</form>
+
+<div class="modal-footer">
+    <a class="btn btn-primary" data-ng-click="vm.submit(vm.selectedCravings)">Submit</a>
+    <a class="btn" ng-click="vm.close()">Close</a>
+</div>

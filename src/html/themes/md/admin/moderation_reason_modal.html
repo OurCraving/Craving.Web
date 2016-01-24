@@ -1,0 +1,33 @@
+﻿<md-dialog aria-label="{{vm.title}}" id="modReasonModal" layout="column">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            <h2>Enter a reason for your moderation request</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="vm.close();">
+                <ng-md-icon icon="close" aria-label="Close dialog"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+        <div class="md-toolbar-tools">
+            <h5 class="md-flex">{{vm.message}}</h5>
+        </div>
+    </md-toolbar>
+    <md-content class="md-padding" flex layout="row" layout-align="center center">
+        <form ng-submit="vm.submit(vm.reasonData)" name="reasonForm" flex>            
+            <md-input-container>
+                <label>Reason (ie: Inappropriate content)</label>
+                <input autofocus aria-label="reason"
+                       maxlength="200" required name="reason" data-ng-model="vm.reasonData.reason" />
+                <div ng-messages="reasonForm.reason.$error">
+                    <div ng-message="required">A reason is required.</div>
+                </div>
+            </md-input-container>
+        </form>
+    </md-content>
+    <div class="md-actions" layout="row" flex="5" layout-align="center center">
+        <md-button ng-click="vm.close();"> Cancel </md-button>
+        <md-button data-ng-click="vm.submit(vm.reasonData)" class="md-primary">Submit</md-button>
+    </div>
+</md-dialog>
+

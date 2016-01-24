@@ -1,0 +1,66 @@
+﻿<md-dialog aria-label="{{vm.title}}" id="loginModal">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            <h2>{{vm.title}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="vm.close();">
+                <ng-md-icon icon="close" aria-label="Close dialog"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+        <div class="md-toolbar-tools">
+            <h5 class="md-flex">{{vm.message}}</h5>
+        </div>
+    </md-toolbar>
+    <md-content class="md-padding" flex layout="column">
+
+        <div layout="column" flex ng-show="vm.selectedIndex == 0">
+            <form name="loginForm">
+                <md-input-container flex>
+                    <label>Email</label>
+                    <input type="email" minlength="5" name="email" required ng-model="vm.loginData.email" autofocus ui-keypress="{enter:'vm.submit($event)'}">
+                    <div ng-messages="loginForm.email.$error">
+                        <div ng-message="required">required.</div>
+                        <div ng-message="email">email address is invalid</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Password</label>
+                    <input type="password" name="password" required ng-model="vm.loginData.password" ui-keypress="{enter:'vm.submit($event)'}">
+                    <div ng-messages="loginForm.password.$error">
+                        <div ng-message="required">required.</div>
+                    </div>
+                </md-input-container>
+            </form>
+        </div>
+
+        <div layout="column" flex ng-show="vm.selectedIndex == 1">
+            <form name="forgetPasswordForm">
+                <md-input-container flex>
+                    <label>Email</label>
+                    <input type="email" minlength="5" name="email" required ng-model="vm.forgetData.email" autofocus ui-keypress="{enter:'vm.submit($event)'}">
+                    <div ng-messages="forgetPasswordForm.email.$error">
+                        <div ng-message="required">required.</div>
+                        <div ng-message="email">email address is invalid</div>
+                    </div>
+                </md-input-container>
+                <p>
+                    We will send you an encrypted link to your email box so you can reset your password.The email should arrive in less than half hour.
+                </p>
+            </form>
+        </div>
+
+        <md-radio-group ng-model="vm.selectedIndex" layout="row">
+            <md-radio-button value="0" class="md-primary">Login</md-radio-button>
+            <md-radio-button value="1"> Forget Password </md-radio-button>
+        </md-radio-group>
+    </md-content>
+    <div class="md-actions" layout="row" flex="5">
+        <span flex></span>
+        <md-button ng-click="vm.loginWithFacebook();">Log in With Facebook</md-button>
+        <md-button ng-click="vm.close();"> Cancel </md-button>
+        <md-button ng-click="vm.submit();" class="md-primary" ng-if="vm.selectedIndex == 0"> Login </md-button>
+        <md-button ng-click="vm.submit();" class="md-primary" ng-if="vm.selectedIndex == 1"> Reset Password </md-button>
+    </div>
+</md-dialog>

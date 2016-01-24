@@ -1,0 +1,21 @@
+﻿<div data-ng-controller="ProfileDislikeCravingController as vm">
+    <form class="form-profile" role="form">
+        <h2 class="form-profile-heading">::vm.title::</h2>
+        <div>
+            Select all cravings that you do not like in here. When you are searching for good eat, we will try to help you exclude any dish that contains things you don't like.
+            If you eat everything, you can simply skip this page. 
+        </div>
+        <div>
+            <craving-select selected-craving="vm.selected"></craving-select>
+        </div>
+        <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="vm.submit()"
+                data-ng-disabled="vm.savedSuccessfully==true">
+            Submit
+        </button>
+        <div>
+            <div data-ng-hide="vm.message == ''" data-ng-class="(vm.savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                ::vm.message::
+            </div>
+        </div>
+    </form>
+</div>

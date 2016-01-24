@@ -1,0 +1,117 @@
+    <!-- Inline Script for colors and config objects; used by various external scripts; -->
+<script>
+        var colors = {% include "src/colors.json" %};
+        var config = {
+            theme: [[ config.theme | json | safe ]],
+            skins: [[ config.skins[config.theme] | json | safe ]]
+        };
+</script>
+<!-- Vendor Scripts Bundle
+Includes all of the 3rd party JavaScript libraries above.
+The bundle was generated using modern frontend development tools that are provided with the package
+To learn more about the development process, please refer to the documentation.
+Do not use it simultaneously with the separate bundles above. -->
+    {% if bundle -%}
+<script src="[[ cwd ]]js/vendor/all{% if config.minify %}.min{% endif %}.js"></script>
+    {% else -%}
+<!-- <script src="[[ cwd ]]js/vendor/all{% if config.minify %}.min{% endif %}.js"></script> -->
+    {% endif %}
+
+    {% if js_vendor !== false %}
+<!-- Vendor Scripts Standalone Libraries -->
+        {% for module in js_vendor -%}
+
+            {%- if module|typeof('object') -%}
+
+                {%- if !module|array_key_exists("themes") and !module|array_key_exists("exclude") -%}
+                    {%- if bundle -%}
+<!-- <script src="[[ cwd ]]js/[[ module.name ]]{% if config.minify %}.min{% endif %}.js"></script> -->
+                    {%- else -%}
+<script src="[[ cwd ]]js/[[ module.name ]]{% if config.minify %}.min{% endif %}.js"></script>
+                    {%- endif -%}
+                {%- endif -%}
+
+                {%- if module.themes|inArray(config.theme) or (module|array_key_exists("exclude") and !module.exclude|inArray(config.theme)) -%}
+                    {%- if bundle -%}
+<!-- <script src="[[ cwd ]]js/[[ module.name ]]{% if config.minify %}.min{% endif %}.js"></script> -->
+                    {%- else -%}
+<script src="[[ cwd ]]js/[[ module.name ]]{% if config.minify %}.min{% endif %}.js"></script>
+                    {%- endif -%}
+                {%- else -%}
+<!-- <script src="[[ cwd ]]js/[[ module.name ]]{% if config.minify %}.min{% endif %}.js"></script> -->
+                {%- endif -%}
+
+            {%- else -%}
+                {%- if bundle -%}
+<!-- <script src="[[ cwd ]]js/[[ module ]]{% if config.minify %}.min{% endif %}.js"></script> -->
+                {%- else -%}
+<script src="[[ cwd ]]js/[[ module ]]{% if config.minify %}.min{% endif %}.js"></script>
+                {%- endif -%}
+            {%- endif -%}
+
+        {% endfor -%}
+    {% endif %}
+
+<!-- App Scripts Bundle
+Includes Custom Application JavaScript used for the current theme/module;
+Do not use it simultaneously with the standalone modules below. -->
+    {% if bundle -%}
+<script src="[[ cwd ]]js/app/app{% if config.minify %}.min{% endif %}.js"></script>
+    {% else -%}
+<!-- <script src="[[ cwd ]]js/app/app{% if config.minify %}.min{% endif %}.js"></script> -->
+    {% endif %}
+
+    {% if js_modules !== false %}
+<!-- App Scripts Standalone Modules
+As a convenience, we provide the entire UI framework broke down in separate modules
+Some of the standalone modules may have not been used with the current theme/module
+but ALL the modules are 100% compatible -->
+    {% for module in js_modules -%}
+
+        {%- if module|typeof('object') -%}
+
+        {%- if !module|array_key_exists("themes") and !module|array_key_exists("exclude") -%}
+            {%- if bundle -%}
+<!-- <script src="[[ cwd ]]js/[[ module.name ]]{% if config.minify %}.min{% endif %}.js"></script> -->
+            {%- else -%}
+<script src="[[ cwd ]]js/[[ module.name ]]{% if config.minify %}.min{% endif %}.js"></script>
+            {%- endif -%}
+        {%- endif -%}
+
+        {%- if module.themes|inArray(config.theme) or (module|array_key_exists("exclude") and !module.exclude|inArray(config.theme)) -%}
+            {%- if bundle -%}
+<!-- <script src="[[ cwd ]]js/[[ module.name ]]{% if config.minify %}.min{% endif %}.js"></script> -->
+            {%- else -%}
+<script src="[[ cwd ]]js/[[ module.name ]]{% if config.minify %}.min{% endif %}.js"></script>
+            {%- endif -%}
+        {%- else -%}
+<!-- <script src="[[ cwd ]]js/[[ module.name ]]{% if config.minify %}.min{% endif %}.js"></script> -->
+        {%- endif -%}
+
+        {%- else -%}
+            {%- if bundle -%}
+<!-- <script src="[[ cwd ]]js/[[ module ]]{% if config.minify %}.min{% endif %}.js"></script> -->
+            {%- else -%}
+<script src="[[ cwd ]]js/[[ module ]]{% if config.minify %}.min{% endif %}.js"></script>
+            {%- endif -%}
+        {%- endif -%}
+
+    {% endfor -%}
+    {% endif %}
+
+    {% if js_theme_core !== false -%}
+
+    {%- if js_theme_core|inArray(config.theme) -%}
+<!-- App Scripts CORE {[[ config.theme ]]}:
+Includes the custom JavaScript for this theme/module;
+The file has to be loaded in addition to the UI modules above;
+app.js already includes main.js so this should be loaded
+ONLY when using the standalone modules; -->
+        {%- if bundle -%}
+<!-- <script src="[[ cwd ]]js/app/main{% if config.minify %}.min{% endif %}.js"></script> -->
+        {%- else -%}
+<script src="[[ cwd ]]js/app/main{% if config.minify %}.min{% endif %}.js"></script>
+        {%- endif -%}
+    {%- endif -%}
+
+    {% endif %}

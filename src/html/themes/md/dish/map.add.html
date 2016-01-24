@@ -1,0 +1,77 @@
+﻿<md-toolbar class="md-theme-light" ng-hide="vm.showSearch">
+    <div class="md-toolbar-tools">
+        <h3 class="md-title">Map</h3>
+        <span flex></span>
+        <md-button aria-label="Search" ng-click="vm.showSearch = !vm.showSearch">
+            <ng-md-icon icon="search"></ng-md-icon>
+        </md-button>
+        <md-button ng-click="vm.close()" aria-label="close the map viewer" hide-gt-sm>
+            <ng-md-icon icon="close" style="margin-bottom:10px;"></ng-md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+<md-toolbar class="md-theme-light" ng-show="vm.showSearch">
+    <div class="md-toolbar-tools">
+        <md-button ng-click="vm.showSearch = !vm.showSearch" aria-label="Back">
+            <ng-md-icon icon="arrow_back"></ng-md-icon>
+        </md-button>
+        <form name="searchForm" flex layout layout-fill ng-submit="vm.searchRestaurant();">
+            <md-input-container flex class="map_search_container">
+                <input ng-model="vm.searchText" placeholder="search restaurants" autofocus ui-keypress="{enter:'vm.searchResturant($event)'}">
+            </md-input-container>
+            <md-button aria-label="Search" type="submit">
+                <ng-md-icon icon="search"></ng-md-icon>
+            </md-button>
+        </form>
+    </div>
+</md-toolbar>
+<md-content layout="column" flex="30">
+    <div class="map-wrapper">
+        <ui-gmap-google-map center="vm.map.center" zoom="vm.map.zoom" draggable="true" options="vm.map.options" control="vm.map.control">
+            <ui-gmap-marker options="vm.map.userMarker.options"
+                            coords="vm.map.userMarker.coords" icon="vm.map.userMarker.icon"
+                            events="vm.map.userMarker.events" idkey="vm.map.userMarker.id"></ui-gmap-marker>
+
+            <ui-gmap-markers models="vm.map.markers" coords="'coords'" icon="'icon'" options="'options'" events="'events'" modelsbyref="true">
+            </ui-gmap-markers>
+        </ui-gmap-google-map>
+    </div>
+</md-content>
+<md-content layout="column" flex>
+    <h3 class="location-title">{{vm.itemTitle}}</h3>
+    <md-content flex layout="column" class="scrollable-content">
+        <div class="grid-tiles" flex layout="column">
+            <div class="panel panel-default card grid-item"
+                 data-ng-repeat="item in vm.items"
+                 data-ng-click="vm.locate(item);"
+                 ng-class="{selected_grid_item: item.isSelected}">
+                <div class="panel-heading" title="{{item.name}}">
+                    <div class="numberCircle" ng-class="{active: item.isSelected}">{{item.placeIndex}}</div>
+                    <h5 class="panel-title">
+                        {{item.name | limitTo: 25}} {{item.name.length > 25 ? '...' :''}}
+                    </h5>
+                    <a data-ng-show="item.website && item.website!=''" href="{{item.website}}" target="_blank"><ng-md-icon icon="web" size="16"></ng-md-icon></a>
+                </div>
+                <div class="panel-body">
+                    <small>{{item.address}}</small>
+                    <div class="cuisine-container">
+                        <ul>
+                            <li class="cuisine-item" data-ng-repeat="c in vm.getCuisine(item)">{{c}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center" data-ng-show="vm.total>vm.pageSize">
+            <ul class="pagination margin-top-none">
+                <li ng-repeat="p in vm.pages" ng-class="{active: vm.currentPage == p}">
+                    <a ng-click="vm.gotoPage(p);" class="clickable">{{p}}</a>
+                </li>
+            </ul>
+            <div>
+                <md-button class="md-raised" ng-disabled="!vm.hasPrevPage" ng-click="vm.gotoPrevPage();">&laquo; Previous</md-button>
+                <md-button class="md-raised" ng-disabled="!vm.hasNextPage" ng-click="vm.gotoNextPage();">&raquo; Next</md-button>
+            </div>
+        </div>
+    </md-content>
+</md-content>

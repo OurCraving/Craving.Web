@@ -1,0 +1,61 @@
+﻿<md-dialog aria-label="{{vm.title}}">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            <h2>{{vm.title}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="vm.close();">
+                <ng-md-icon icon="close" aria-label="Close dialog"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-toolbar class="md-warn" ng-show="vm.message!=''">
+        <div class="md-toolbar-tools">
+            <h5 class="md-flex">{{vm.message}}</h5>
+        </div>
+    </md-toolbar>
+    <md-content class="md-padding">
+        <form name="signupForm" ng-show="vm.showForm" ng-submit="vm.submit();">
+            <div layout="column">
+                <md-input-container flex>
+                    <label>Email</label>
+                    <input type="email" minlength="5" name="email" required ng-model="vm.registration.email" autofocus ui-keypress="{enter:'vm.submit($event)'}">
+                    <div ng-messages="signupForm.email.$error">
+                        <div ng-message="required">required.</div>
+                        <div ng-message="email">email address is invalid</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Password</label>
+                    <input type="password" name="password" required ng-model="vm.registration.password" ui-keypress="{enter:'vm.submit($event)'}">
+                    <div ng-messages="signupForm.password.$error">
+                        <div ng-message="required">required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Repeat Password</label>
+                    <input type="password" name="confirmPassword" required ng-model="vm.registration.confirmPassword" ui-keypress="{enter:'vm.submit($event)'}"
+                           compare-to="vm.registration.password">
+                    <div ng-messages="signupForm.confirmPassword.$error">
+                        <div ng-message="required">required.</div>
+                        <div ng-message="compareTo">not equal to the password</div>
+                    </div>
+                </md-input-container>
+                <ul class="small description">
+                    <li>Once you register, you will receive an email to activate your account.</li>
+                    <li>Your password is encrypted in our database. We take privacy very seriously.</li>
+                    <li>If register, you are assumed to agree with our <a ui-sref="app.termsconditions" target="_blank">Terms and Condition</a>.</li>
+                </ul>
+            </div>
+        </form>
+        <div style="padding:30px; text-align:center" ng-show="!vm.showForm">
+            <p>Thanks for signing up. We have sent an email to <i>{{vm.registration.email}}</i>. Please check your email box and activate your acccount. </p>
+            <p>Happy craving!</p>
+        </div>
+    </md-content>
+    <div class="md-actions" layout="row">
+        <span flex></span>
+        <md-button class="md-primary" ng-click="vm.loginWithFacebook()"> Continue with Facebook </md-button>
+        <md-button ng-click="vm.close();"> Cancel </md-button>
+        <md-button type="submit" class="md-primary" ng-show="vm.showForm"> Sign up </md-button>
+    </div>
+</md-dialog>

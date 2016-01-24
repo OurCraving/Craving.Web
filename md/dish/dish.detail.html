@@ -1,0 +1,173 @@
+<div class="md-whiteframe-z3 no-margin" style="height:100%; background:white" flex layout="column" layout-fill>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <a ui-sref="restaurant.home({id:vm.dish.RestaurantId})">
+        <h3 class="md-title">{{vm.dish.RestaurantName}}</h3>
+      </a>
+      <span flex></span>
+      <section layout="row" class="groupX">
+        <md-button class="md-accent md-raised" id="bt-openMap" ng-click="vm.openMap();" aria-label="Show restaurants on map" hide-gt-sm>
+          <md-tooltip>
+            Show this restaurant on map
+          </md-tooltip>
+          <ng-md-icon icon="map" size="20"></ng-md-icon>
+        </md-button>
+
+        <md-button class="md-warn md-raised" access="moderator,admin,owner" role-check-type="any" aria-label="Remove Dish" data-ng-click="vm.removeDish();" title="Remove dish">
+          Remove Dish
+        </md-button>
+
+        <md-button ng-click="vm.addToProposal(vm.recentProposal, $event);" class="md-accent md-raised" aria-label="Add to Craving Proposal" style="margin-right: 0;">
+          <md-tooltip>
+            Add this dish to your craving proposal
+          </md-tooltip>
+          <ng-md-icon icon="add_shopping_cart"></ng-md-icon> <span hide-sm hide-md>Add to Proposal</span>
+        </md-button>
+        <md-menu md-position-mode="target-right target" md-offset="0 40">
+          <md-button class="md-accent md-raised" style="margin-left: -2px;" aria-label="More options..." ng-click="$mdOpenMenu($event)">
+            <ng-md-icon md-menu-origin icon="arrow_drop_down"></ng-md-icon>
+          </md-button>
+          <md-menu-content>
+            <md-menu-item data-ng-repeat="p in vm.proposals">
+              <md-button data-ng-click="vm.addToProposal(p, $event);" aria-expanded="false" aria-haspopup="true">
+                {{vm.getProposalName(p)}}
+              </md-button>
+            </md-menu-item>
+            <md-menu-divider ng-if="vm.proposals.length > 0"></md-menu-divider>
+            <md-menu-item>
+              <md-button ng-click="vm.addToNewProposal($event);">Create a new proposal</md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </section>
+    </div>
+  </md-toolbar>
+  <md-toolbar md-scroll-shrink class="md-hue-3" style="background-color:transparent; color:black;">
+    <div class="md-toolbar-tools">
+      <h1 class="dishName">{{vm.dish.Name}}</h1>
+      <span flex></span>
+      <span class="small">{{vm.getReviewPostDate(vm.dish.AddedDate)}}</span>
+      <a class="clickable" data-ng-click="vm.openDiner(vm.dish.CreatorId, $event);">
+        <img class="img-avatar" ng-src="{{vm.getDinerImage(vm.dish.CreatorImageFileName)}}" title="Peek">
+      </a>
+    </div>
+  </md-toolbar>
+  <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+    <div class="md-toolbar-tools">
+      <h5 class="md-flex">{{vm.message}}</h5>
+    </div>
+  </md-toolbar>
+  <div layout layout-padding layout-margin>
+    <div layout="column" flex>
+      <div data-ng-show="vm.hasDescription && vm.showDescriptionEditor == false">
+        <p>{{vm.dish.Description}}</p>
+        <a class="clickable" data-ng-click="vm.showDescriptionEditor = true">[Update it]</a>
+      </div>
+      <div data-ng-show="vm.hasDescription==false">
+        <p>There is no description of this dish. <a class="clickable" data-ng-click="vm.showDescriptionEditor = true">[Add Description Now]</a></p>
+      </div>
+      <div data-ng-show="vm.showDescriptionEditor">
+        <form name="descriptionForm">
+          <md-input-container>
+            <label for="description">Describe the dish if you can</label>
+            <textarea name="description" rows="2" id="description" data-ng-model="vm.updatingDescription"></textarea>
+          </md-input-container>
+          <div layout layout-align="start center">
+            <md-button class="md-raised md-primary" data-ng-click="vm.saveDescription();" aria-label="Save description">Save</md-button>
+            <md-button class="md-raised" data-ng-click="vm.updatingDescirption = vm.dish.Description;vm.showDescriptionEditor = false;">Cancel</md-button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div style="padding-right:10px;">
+      <p class="small">{{vm.numberOfCravingDiners}}
+        <ng-pluralize count="vm.totalReviews" when="{'1': 'diner','other': 'diners'}"></ng-pluralize> craved this</p>
+      <md-button class="md-fab md-mini favor-icon" aria-label="Add it to my favorite list" ng-click="vm.craveForIt();">
+        <ng-md-icon icon="favorite" ng-show="vm.isMyFavorite == true"></ng-md-icon>
+        <ng-md-icon icon="favorite_outline" ng-show="vm.isMyFavorite == false"></ng-md-icon>
+      </md-button>
+    </div>
+  </div>
+  <md-divider></md-divider>
+  <div layout="column" layout-padding layout-margin>
+    <h4>
+      <ng-md-icon icon="photo"></ng-md-icon>Dish Photos</h4>
+    <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px" layout="row">
+      <md-grid-title data-ng-repeat="file in vm.dish.DishImageFiles">
+        <img ng-src="{{vm.getDishImageSrc(file.FileName)}}" class="img-responsive img-dish" data-ng-click="vm.openImage(file.FileName, $event);" />
+      </md-grid-title>
+    </md-grid-list>
+    <div layout layout-align="start center">
+      <md-button class="md-raised" data-ng-click="vm.addFile($event);" aria-haspopup="true" aria-label="open the add dish image popup">
+        <ng-md-icon icon="add_to_photos"></ng-md-icon> Add Photo
+      </md-button>
+    </div>
+  </div>
+  <md-divider></md-divider>
+  <div layout-padding layout-margin>
+    <h4>
+      <ng-md-icon icon="style"></ng-md-icon>Craving Tags</h4>
+    <div ng-show="vm.dish.Cravings.length==0">Ah, there is no tag associated with this dish yet</div>
+    <div layout="row" layout-align="start center" ng-show="vm.dish.Cravings.length >0 " class="tag-list">
+      <span data-ng-repeat="crave in vm.dish.Cravings">
+                <a ui-sref="app.home.search({criteria: crave.CravingTag})" class="text-muted">{{crave.CravingTag}}</a>
+            </span>
+    </div>
+    <div layout layout-align="start center">
+      <md-button class="md-raised" data-ng-click="vm.addCravingTags($event);" aria-label="open the craving tag edition popup" aria-haspopup="true">
+        <ng-md-icon icon="note_add"></ng-md-icon> Add Craving Tag
+      </md-button>
+    </div>
+  </div>
+  <md-divider></md-divider>
+  <div flex layout-padding layout-margin>
+    <h4>
+      <ng-md-icon icon="stars"></ng-md-icon>Reviews</h4>
+    <div>
+      <form name="reviewForm">
+        <div>
+          <div ng-switch="vm.totalReviews">
+            <div ng-switch-when="0" style="display: inline">
+              <small>Be the first to review this dish!</small>
+            </div>
+            <div ng-switch-default style="display: inline">
+              <label style="margin: 5px 0"> Total Rating:
+                <strong>{{vm.averageRating}}</strong>
+              </label>
+              <div class="small-inline">
+                (from {{vm.totalReviews}}
+                <ng-pluralize count="vm.totalReviews" when="{'1': 'diner','other': 'diners'}"></ng-pluralize>)
+              </div>
+            </div>
+          </div>
+          <label style="margin: 5px 0">My Rating:</label>
+          <rating data-ng-model="vm.myRating" max="5" on-hover="vm.hoveringOver(value)" on-leave="vm.hoveringLeave()"></rating>
+          <span class="label" data-ng-class="{'label-warning': vm.percent<30, 'label-info': vm.percent>=30 && vm.percent<70, 'label-success': vm.percent>=70}" data-ng-show="vm.overStar !== null || vm.showReviewBox == true">{{vm.ratingLabel}}</span>
+        </div>
+        <div layout="row">
+          <input type="text" class="form-control" placeholder="Your comment .." data-ng-model="vm.myReview" data-ng-readonly="vm.myRating == 0" flex>
+          <md-button class="md-raised md-mini pull-right-button" data-ng-class="{'md-warn': vm.myReviewIsChanged == true, 'md-primary': vm.myReviewIsChanged == false}" ui-keypress="{enter:'vm.saveMyReview()'}" data-ng-click="vm.saveMyReview();" aria-label="save my review">
+            <ng-md-icon icon="save"></ng-md-icon>
+          </md-button>
+        </div>
+      </form>
+    </div>
+
+    <div flex ng-show="vm.reviews.length>0" class="reviewContainer">
+      <section ng-repeat="review in vm.reviews" layout="column">
+        <div layout>
+          <a class="clickable" data-ng-click="vm.openDiner(vm.dish.CreatorId, $event);">
+            <img class="img-avatar" ng-src="{{vm.getDinerImage(review.ReviewerImageFileName)}}" title="Peek">
+          </a>
+          <h5 class="reviewer-title">{{review.ReviewerName}}</h5>
+          <span flex></span>
+          <span class="review-date">{{vm.getReviewPostDate(review.PostDate)}}</span>
+        </div>
+        <div class="review-body">
+          <p class="margin-none">{{review.Review}}</p>
+        </div>
+        <md-divider hide-gt-sm ng-if="!$last"></md-divider>
+      </section>
+    </div>
+  </div>
+</div>

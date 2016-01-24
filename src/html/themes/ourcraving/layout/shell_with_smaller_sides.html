@@ -1,0 +1,26 @@
+<div class="st-container">
+    {% include "src/html/themes/ourcraving/navbar/_navbar.html" %}
+
+    {% include "src/html/themes/ourcraving/layout/_sidebar.html" { sidebarOptions: "left sidebar-size-1 sidebar-mini-reveal sidebar-offset-0 sidebar-skin-dark sidebar-visible-desktop", sidebarData: "id=sidebar-menu data-type=collapse" } %}
+
+    <aside class="sidebar right sidebar-size-xs-1 sidebar-size-lg-25pc sidebar-size-30pc sidebar-offset-0 sidebar-skin-white sidebar-visible-desktop"
+           id="sidebar-edit"
+           data-toggle-layout="true"
+           data-toggle-bar="true">
+        <div data-scrollable ui-view="editor"></div>
+    </aside>
+    
+    <aside class="sidebar right sidebar-size-xs-1 sidebar-size-lg-48pc sidebar-size-40pc sidebar-offset-0 sidebar-skin-white" 
+           id="sidebar-agent" data-overlay="true">
+        <div data-scrollable ui-view="overlay"></div>
+    </aside>
+
+    <div class="st-pusher">
+        <div class="st-content">
+            <div class="st-content-inner" id="content" data-scrollable>
+                <div class="container-fluid" ui-view="content"></div>
+            </div>
+        </div>
+    </div>
+    {% include "src/html/themes/ourcraving/layout/_footer.html" %}
+</div>

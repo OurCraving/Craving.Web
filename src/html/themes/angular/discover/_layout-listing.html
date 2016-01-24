@@ -1,0 +1,40 @@
+<!-- Wrapper required for sidebar transitions -->
+<div class="st-container">
+
+	{% include "src/html/themes/angular/_navbar.html" %}
+
+	<!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
+	{% include "lib/real-estate/html/_sidebar-filter.html" { sidebarOptions: "left sidebar-size-3 sidebar-offset-1 sidebar-skin-white sidebar-visible-desktop", sidebarData: "id=sidebar-filter" } %}
+
+	<!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
+	{% include "src/html/themes/angular/discover/_sidebar.html" { sidebarOptions: "left sidebar-size-1 sidebar-mini-reveal sidebar-offset-0 sidebar-skin-dark sidebar-visible-desktop", sidebarData: "id=sidebar-menu data-type=collapse" } %}
+
+	<!-- content push wrapper -->
+	<div class="st-pusher">
+
+		<!-- this is the wrapper for the content -->
+		<div class="st-content">
+
+			<!-- extra div for emulating position:fixed of the menu -->
+			<div class="st-content-inner padding-top-none" id="content" data-scrollable>
+
+				<div ng-hide="$state.is('discover.listing-map')">
+					{% include "lib/real-estate/html/_navbar-listing.html" { navbarOptions: "navbar-static-top" } %}
+				</div>
+
+				<div class="container-fluid">
+					{% block content %}{% endblock %}
+				</div>
+
+			</div>
+			<!-- /st-content-inner -->
+
+		</div>
+		<!-- /st-content -->
+
+	</div>
+	<!-- /st-pusher -->
+
+	{% include "lib/layout/html/_footer_copyright.html" %}
+
+</div>

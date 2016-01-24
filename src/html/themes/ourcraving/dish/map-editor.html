@@ -1,0 +1,73 @@
+
+
+<div class="split-vertical">
+    <div class="sidebar-block equal-padding">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <ui-select data-ng-model="vm.selectedRestaurant" id="restaurant"
+                           style="width:90%; display:inline-block; margin-right:10px"
+                           on-select="vm.selectRestaurant($item);"
+                           reset-search-input="false">
+                    <ui-select-match placeholder="Select a restaurant on the map or type here to search ...">::$select.selected.Name::</ui-select-match>
+                    <ui-select-choices repeat="rest in vm.availableRestaurants track by $index | propsFilter: {Name: $select.search}"
+                                       refresh="vm.searchRestaurant($select.search)"
+                                       refresh-delay="300">
+                        <div>
+                            <span ng-bind-html="rest.Name | highlight: $select.search"></span>
+                            <small style="font-size:11px;clear:both;display:block">::rest.Address::</small>
+                        </div>
+                    </ui-select-choices>
+                </ui-select>
+                
+                <a class="btn btn-warning btn-sm" alt="clean up filter" data-ng-click="vm.cleanupFilter();"><i class="fa fa-refresh"> </i></a>
+            </div>
+            <div class="panel-body relative height-350">
+                <div id="google-rest-map"
+                     data-toggle="google-maps" data-zoom="15"
+                     data-id="map-edit"
+                     data-zoom-position="RIGHT_BOTTOM"
+                     class="maps-google-fs"></div>
+            </div>
+        </div>
+    </div>
+    <div class="split-vertical-body">
+        <h5 style="font-weight:400; margin-left: 20px;margin-bottom: 0;">::vm.itemTitle::</h5>
+        <div class="split-vertical-cell">
+            <div data-scrollable>
+                <div class="row grid-tiles">
+                    <div class="panel panel-default card grid-item" data-ng-repeat="item in vm.items"
+                         on-last-repeat data-ng-click="vm.locate(item);"
+                         ng-class="{selected_grid_item: item.isSelected}">
+                        <div class="panel-heading">
+                            <div class="numberCircle" ng-class="{active: item.isSelected}">::item.placeIndex::</div>
+                            <h5 class="panel-title">::item.name::</h5>
+                            <a data-ng-show="item.website && item.website!=''" href="::item.website::" target="_blank"><span class="md md-public"></span></a>
+                        </div>
+                        <div class="panel-body">
+                            <small>::item.address::</small>
+                            <div class="cuisine-container">
+                                <ul>
+                                    <li class="cuisine-item" data-ng-repeat="c in vm.getCuisine(item)">::c::</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-center" data-ng-show="vm.total>vm.pageSize">
+                    <div class="col-md-12 col-xs-12">
+                        <ul class="pagination margin-top-none">
+                            <li ng-class="{disabled: !vm.hasPrevPage}"><a ng-click="vm.gotoPrevPage();">&laquo;</a></li>
+                            <li ng-repeat="p in vm.pages" ng-class="{active: vm.currentPage == p}">
+                                <a ng-click="vm.gotoPage(p);">::p::</a>
+                            </li>
+                            <li ng-class="{disabled: !vm.hasNextPage}"><a ng-click="vm.gotoNextPage();">&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "src/html/themes/ourcraving/maps/_map_popup_templates.html" %}
+
+{% include "src/html/themes/ourcraving/maps/_map_templates.html" %}

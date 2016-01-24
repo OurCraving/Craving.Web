@@ -1,0 +1,90 @@
+﻿<div class="container-fluid" data-ng-hide="vm.selectedProposal == undefined">
+    <h1 class="text-h2" data-ng-show="vm.titleInEdit == false">
+        <a href="" data-ng-click="vm.titleInEdit = true" title="Edit Proposal Title">::vm.getProposalTitle(vm.selectedProposal)::</a>
+    </h1>
+
+    <div class="form-group form-control-default" data-ng-show="vm.titleInEdit">
+        <label for="proposalName">Proposal Name:</label>
+        <input id="proposalName" type="text" class="form-control" autofocus onfocus="this.select();"
+               ui-keypress="{enter:'vm.saveProposalName()'}"
+               placeholder="Name of this proposal, e.g. My Lunch Proposal" data-ng-model="vm.updatingProposalName">
+        <button class="btn btn-primary" data-ng-click="vm.saveProposalName();">Save</button>
+        <button class="btn btn-default" data-ng-click="vm.updatingProposalName = vm.getProposalTitle(vm.selectedProposal);vm.titleInEdit = false;">Cancel</button>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="pull-right">
+                <button class="btn btn-danger" ng-confirm-click="vm.removeProposal(vm.selectedProposal);" confirm-msg="If you delete a craving proposal, you will never see it again." data-ng-show="vm.isExpired(vm.selectedProposal);">Remove</button>
+                <button class="btn btn-info" data-ng-click="vm.extendProposal(vm.selectedProposal);" data-ng-show="vm.isExpired(vm.selectedProposal);">Extend</button>
+                <button class="btn btn-info" data-ng-click="vm.expireProposal(vm.selectedProposal);" data-ng-show="vm.isExpired(vm.selectedProposal) == false;">Expire</button>
+            </div>
+            <p>
+                <span class="label label-grey-100">Created on: ::vm.formateDate(vm.selectedProposal.CreatedDate):: </span>
+                <span class="label label-grey-200" data-ng-show="vm.isExpired(vm.selectedProposal)">Expired</span>
+            </p>
+            <form>
+                <div class="form-group input-group">
+                    <input type="text" class="form-control" readonly="readonly" data-ng-model="vm.proposalUrl">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" data-ng-click="vm.copyUrl();" title="Copy to my clipboard">
+                            <i class="fa fa-clipboard"></i>
+                        </button>
+                    </span>
+                </div>
+                <div data-ng-show="vm.isExpired(vm.selectedProposal)" class="danger-color">
+                    This proposal has expired. You can still make change to it, but other people won't be able to see it unless you (extend) it. 
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="message_panel" data-ng-show="vm.message!=''" data-ng-class="(vm.savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+        <span>::vm.message::</span>
+    </div>
+
+    <h4 class=" text-h4">Options</h4>
+    <div class="alert alert-info" role="alert" data-ng-show="vm.selectedProposal.Items.length == 0 ">
+        <strong>Snap,</strong> your craving proposal has no option yet. <br />
+        Find some craving dishes and add them to the proposal.<br />
+        Then generate a single URL to discuss with your friends.
+    </div>
+    <div class="panel panel-default" data-ng-show="vm.selectedProposal.Items.length > 0" data-ng-repeat="item in vm.selectedProposal.Items">
+        <div class="panel-heading">
+            <div class=" row">
+                <div class="col-sm-10">
+                    <h4 class="media-heading margin-v-0-10 strong">
+                        ::item.RestaurantName::
+                    </h4>
+                </div>
+                <div class="col-sm-2">
+                    <a class="clickable danger-color" data-ng-click="vm.removeItem(item);"><small>[Remove it]</small></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <a class="text-subhead" ui-sref="detail.dish({id: item.DishId})" title="Dish you might be interested">
+                        ::item.DishName::
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body row">
+            <div class="col-sm-6">
+                <div class="checkbox checkbox-primary margin-none">
+                    <input id="::'chkVote' + $index::" type="checkbox" data-ng-model="vm.votes[item.RestaurantId]" data-ng-change="vm.voteItem(item);">
+                    <label for="::'chkVote' + $index::">I want to eat there</label>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <strong class="text-h5">Votes:</strong>
+                <span class="fa fa-user fa-fw" data-ng-repeat="i in vm.getIterations(item.Votes.length)"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" data-ng-hide="vm.selectedProposal != undefined">
+    <div class="alert alert-danger" role="alert">
+        <strong>Oh snap!</strong> The proposal you want to open doesn't exist!
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<aside class="sidebar{% if sidebarOptions %} {{ sidebarOptions }}{% endif %}"{% if sidebarData %} {{ sidebarData }}{% endif %}>
+    <div data-scrollable>
+        <ul class="sidebar-menu sm-bordered sm-icons-block sm-icons-right">
+            <li class="hasSubmenu" ng-class="{ 'open active': $state.includes('discover') }">
+                <a href="#discover"><i class="fa fa-star"></i><span>Discover</span></a>
+                <ul id="discover" ng-class="{ 'in': $state.includes('discover') }">
+                    <li ng-class="{ 'active': $state.is('discover.map-full') }"><a ui-sref="discover.map-full"><i class="fa fa-map-marker"></i><span>Full screen Map</span></a></li>
+                    <li ng-class="{ 'active': $state.is('discover.map-listing-list') }"><a ui-sref="discover.map-listing-list"><i class="fa fa-list"></i><span>Map Listing - List</span></a></li>
+                    <li ng-class="{ 'active': $state.is('discover.map-listing-grid') }"><a ui-sref="discover.map-listing-grid"><i class="fa fa-th"></i><span>Map Listing - Grid</span></a></li>
+                    <li ng-class="{ 'active': $state.is('discover.listing') }"><a ui-sref="discover.listing"><i class="fa fa-list"></i><span>Listing - List</span></a></li>
+                    <li ng-class="{ 'active': $state.is('discover.listing-grid') }"><a ui-sref="discover.listing-grid"><i class="fa fa-th"></i><span>Listing - Grid</span></a></li>
+                    <li ng-class="{ 'active': $state.is('discover.listing-map') }"><a ui-sref="discover.listing-map"><i class="fa fa-map-marker"></i><span>Listing - Map</span></a></li>
+                </ul>
+            </li>
+            <li class="hasSubmenu" ng-class="{ 'open active': $state.includes('property') }">
+                <a href="#property"><i class="fa fa-home"></i><span>Property</span></a>
+                <ul id="property" ng-class="{ 'in': $state.includes('property') }">
+                    <li ng-class="{ 'active': $state.is('property.map') }"><a ui-sref="property.map"><i class="fa fa-map-marker"></i><span>Map + Property</span></a></li>
+                    <li ng-class="{ 'active': $state.is('property.property') }"><a ui-sref="property.property"><i class="fa fa-list"></i><span>Property details</span></a></li>
+                </ul>
+            </li>
+            <li ng-class="{ 'active': $state.is('property.edit') }"><a ui-sref="property.edit"><i class="fa fa-pencil"></i><span>Add property</span></a></li>
+        </ul>
+        <h4 class="category">Map features</h4>
+        <ul class="sidebar-menu sm-icons-block sm-icons-right sm-active-item-bg">
+            <li ng-class="{ 'active': $state.is('map-features.filters') }"><a ui-sref="map-features.filters"><i class="fa fa-search"></i><span>Map Filters</span></a></li>
+            <li ng-class="{ 'active': $state.is('map-features.themes') }"><a ui-sref="map-features.themes"><i class="fa fa-eyedropper"></i><span>Map Themes</span></a></li>
+            <li ng-class="{ 'active': $state.is('map-features.markers') }"><a ui-sref="map-features.markers"><i class="fa fa-map-marker"></i><span>Map Markers</span></a></li>
+        </ul>
+        <h4 class="category">Website pages</h4>
+        <div class="sidebar-block">
+            <ul class="list-group list-group-menu">
+                <li class="list-group-item"><a ui-sref="front.home-slider">Home + Slider</a></li>
+                <li class="list-group-item"><a ui-sref="front.home-map">Home + Map</a></li>
+                <li class="list-group-item"><a ui-sref="front.listing">Listing - List</a></li>
+                <li class="list-group-item"><a ui-sref="front.listing-grid">Listing - Grid</a></li>
+                <li class="list-group-item"><a ui-sref="front.property">Property</a></li>
+            </ul>
+        </div>
+        <h4 class="category">Versions</h4>
+        <div class="sidebar-block text-center">
+            <a class="btn btn-primary active btn-block" ui-sref="discover.map-full"><strong>AngularJS</strong></a>
+            <a class="btn btn-primary btn-block" href="../html/index.html"><strong>HTML</strong></a>
+        </div>
+    </div>
+</aside>

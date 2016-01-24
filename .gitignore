@@ -1,0 +1,10 @@
+*.csproj.user
+*.csproj.vspscc
+*.vssscc
+Secrets.txt
+.build/
+.vs/
+bin/
+bower_components/
+node_modules/
+obj/

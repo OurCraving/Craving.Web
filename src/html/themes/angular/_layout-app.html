@@ -1,0 +1,34 @@
+<!-- Wrapper required for sidebar transitions -->
+<div class="st-container">
+
+    {% include "src/html/themes/angular/_navbar.html" %}
+
+    <!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
+    {% include "src/html/themes/angular/discover/_sidebar.html" { sidebarOptions: "left sidebar-size-2 sidebar-offset-0 sidebar-skin-dark sidebar-visible-desktop", sidebarData: "id=sidebar-menu data-type=collapse" } %}
+
+    <!-- sidebar effects OUTSIDE of st-pusher: -->
+    <!-- st-effect-1, st-effect-2, st-effect-4, st-effect-5, st-effect-9, st-effect-10, st-effect-11, st-effect-12, st-effect-13 -->
+
+    <!-- content push wrapper -->
+    <div class="st-pusher">
+
+        <!-- sidebar effects INSIDE of st-pusher: -->
+        <!-- st-effect-3, st-effect-6, st-effect-7, st-effect-8, st-effect-14 -->
+
+        <!-- this is the wrapper for the content -->
+        <div class="st-content">
+
+            <!-- extra div for emulating position:fixed of the menu -->
+            <div class="st-content-inner" id="content" data-scrollable>
+
+                {% block content %}{% endblock %}
+
+            </div><!-- /st-content-inner -->
+
+        </div><!-- /st-content -->
+
+    </div><!-- /st-pusher -->
+
+    {% include "lib/layout/html/_footer_copyright.html" %}
+
+</div>

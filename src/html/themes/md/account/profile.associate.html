@@ -1,0 +1,40 @@
+﻿<div layout="column" layout-fill layout-align="start center">
+    <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+        <div class="md-toolbar-tools">
+            <h5 class="md-flex">{{vm.message}}</h5>
+        </div>
+    </md-toolbar>
+    <div layout-align="center start" class="center-content-container md-whiteframe-z2">
+        <div layout-padding class="min-h-320">
+            <div layout="column" flex>
+                <h5 class="md-flex">{{vm.title}}</h5>
+                <form name="associateForm">
+                    <md-input-container flex>
+                        <label>Display Name</label>
+                        <input type="text" minlength="3" name="displayName" required ng-model="vm.authData.username" autofocus ui-keypress="{enter:'vm.submit($event)'}">
+                        <div ng-messages="associateForm.displayName.$error">
+                            <div ng-message="required">A display name is required.</div>
+                            <div ng-message="displayName">Display name is invalid.</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Email</label>
+                        <input type="email" minlength="5" name="email" required ng-model="vm.authData.email" ui-keypress="{enter:'vm.submit($event)'}">
+                        <div ng-messages="associateForm.email.$error">
+                            <div ng-message="required">An email address is required.</div>
+                            <div ng-message="email">email address is invalid.</div>
+                        </div>
+                    </md-input-container>
+                </form>
+            </div>
+
+           
+        </div>
+        <div layout="column">
+            <div layout="row" layout-align="end center">
+                <md-button ng-click="vm.cancel();"> Cancel </md-button>
+                <md-button ng-click="vm.submit();" class="md-primary"> Create Account </md-button>
+            </div>
+        </div>
+    </div>
+</div>

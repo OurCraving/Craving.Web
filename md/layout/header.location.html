@@ -1,0 +1,13 @@
+<div ng-controller="NavbarLocationController as vm">
+  <md-button class="md-warn md-raised md-hue-2" hide-md hide-sm ui-sref="app.location" aria-label="Your location is {{vm.position.userLocation.city}}, {{vm.position.userLocation.region}}">
+    <md-tooltip>My current location. Click to change city</md-tooltip>
+    <ng-md-icon icon="place"></ng-md-icon>
+    {{vm.position.userLocation.city}}, {{vm.position.userLocation.region}}
+  </md-button>
+  <a hide-gt-md ui-sref="app.location">
+    <md-button class="md-accent md-fab md-mini" aria-label="Your location is {{vm.position.userLocation.city}}, {{vm.position.userLocation.region}}">
+      <md-tooltip>My current location is {{vm.position.userLocation.city}}, {{vm.position.userLocation.region}}. Click to change city</md-tooltip>
+      <ng-md-icon icon="place"></ng-md-icon>
+    </md-button>
+  </a>
+</div>

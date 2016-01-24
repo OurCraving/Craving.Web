@@ -1,0 +1,25 @@
+﻿<md-dialog aria-label="{{vm.title}}" id="loginModal" layout="column" style="min-height:480px;">
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            <h2>{{vm.getProposalTitle(vm.Proposal)}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="vm.close();">
+                <ng-md-icon icon="close" aria-label="Close dialog"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+        <div class="md-toolbar-tools">
+            <h5 class="md-flex">{{vm.message}}</h5>
+        </div>
+    </md-toolbar>
+    <md-content flex class="md-padding" layout="column" layout-align="center center">
+        <h4 data-ng-show="vm.AlreadyIn == true" class="danger-color">{{vm.Dish.Name}} is already in to the craving proposal [{{vm.getProposalTitle(vm.Proposal)}}]</h4>
+        <h4 data-ng-show="vm.AlreadyIn == false">{{vm.Dish.Name}} has been added to the craving proposal [{{vm.getProposalTitle(vm.Proposal)}}]</h4>
+        <a ui-sref="proposal.home.detail({key:vm.Proposal.Key})" class="btn btn-success" ng-click="vm.close();">Open Proposal</a>
+    </md-content>
+    <div class="md-actions" layout="row" flex="5" layout-align="center center">
+        <md-button ng-click="vm.close();"> Close </md-button>
+    </div>
+</md-dialog>
+

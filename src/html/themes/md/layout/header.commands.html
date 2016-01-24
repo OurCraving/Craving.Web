@@ -1,0 +1,39 @@
+﻿<div ng-controller="HeaderCommandController as vm" class="md-title-right" layout="row" layout-fill>
+    <md-button class="md-fab md-primary md-mini " aria-label="Add Dish" ui-sref="dish.add">
+        <md-tooltip>Add a new dish</md-tooltip>
+        <ng-md-icon icon='{{vm.addDishIcon}}' options='{"duration": 375}' size="20"></ng-md-icon>
+    </md-button>
+    <md-button class="md-fab md-mini " aria-label="Proposal" ui-sref="proposal.home">
+        <md-tooltip>Check my craving proposals</md-tooltip>
+        <ng-md-icon icon="star" size="20"></ng-md-icon>
+    </md-button>
+    <md-button ng-show="vm.showLogin" class="md-accent" ng-click="vm.showLoginModal($event);">Login</md-button>
+    <md-button ng-show="vm.showSignup" class="md-accent" ng-click="vm.showSignupModal($event);">Sign up</md-button>
+    <div ng-show="vm.showUser">
+        <md-menu md-position-mode="target-right target" md-offset="0 40">
+            <md-button class="md-accent md-fab md-mini md-raised md-icon-button" aria-label="Open profile menu" ng-click="$mdOpenMenu($event)">
+                <md-tooltip>Access my profile</md-tooltip>
+                <img md-menu-origin ng-src="{{vm.getDinerImage(vm.authentication.avatar)}}" class="img-small-avatar img-responsive" />
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item>
+                    <md-button ui-sref="profile.home">
+                        <div layout layout-fill>
+                            <p flex>Profile</p>
+                            <ng-md-icon icon="person" size="16"></ng-md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+                <md-divider></md-divider>
+                <md-menu-item>
+                    <md-button ng-click="vm.logout();">
+                        <div layout layout-fill>
+                            <p flex>Logout</p>
+                            <ng-md-icon icon="logout" size="16"></ng-md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div data-ng-controller="ProfileFavoriteController as vm">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button ng-click="vm.toggleSidenav('left')" hide-gt-md aria-label="Menu">
+        <ng-md-icon icon="menu"></ng-md-icon>
+      </md-button>
+      <h3>
+        {{vm.title}}
+      </h3>
+      <span flex></span>
+    </div>
+  </md-toolbar>
+
+  <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+    <div class="md-toolbar-tools">
+      <h5 class="md-flex">{{vm.message}}</h5>
+    </div>
+  </md-toolbar>
+
+  <md-content flex md-scroll-y>
+    <ui-view layout="column" layout-fill layout-padding>
+      <div class="inset" hide-sm></div>
+
+      <div layout="row" layout-align="center center">
+        <md-card flex-gt-sm="90" flex-gt-md="80">
+          <md-card-content>
+            <p>Here you can find what your favorite dishes:</p>
+
+            <md-list flex ng-show="vm.data.length > 0">
+              <md-list-item ng-repeat="favor in vm.data" class="md-2-line">
+                <div class="md-list-item-text">
+                  <div layout layout-fill>
+                    <h4 class="dishName"><a ui-sref="dish.detail({'id':'{{favor.DishId}}'})">{{favor.Name}}</a></h4>
+                    <span flex></span>
+                    <span class="small">{{vm.formateDate(favor.CravingDate)}}</span>
+                  </div>
+                  <p>{{favor.RestaurantName}}</p>
+                </div>
+              </md-list-item>
+            </md-list>
+
+            <md-list flex ng-show="vm.data.length == 0">
+              <p>Aah, you haven't added any favorite dishes yet. </p>
+              <p>When you open a dish, find this icon
+                <ng-md-icon icon="favorite" class="favor-icon"></ng-md-icon> and click it to add it to your favorite list. </p>
+            </md-list>
+          </md-card-content>
+        </md-card>
+      </div>
+    </ui-view>
+  </md-content>
+</div>

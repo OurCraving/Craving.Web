@@ -1,0 +1,13 @@
+﻿<div layout="column" layout-fill id="shell-container">
+    <ng-include src="'layout/header.html'"></ng-include>
+    
+    <md-content flex role="main" id="main-container">
+        <div ui-view="content"></div>
+    </md-content>
+
+    <ng-include src="'layout/recent.dish.html'"></ng-include>
+    
+    <!--if I don't have this top margin, IE can't see the footer-->
+    <ng-include src="'layout/footer.html'"></ng-include>
+</div>
+

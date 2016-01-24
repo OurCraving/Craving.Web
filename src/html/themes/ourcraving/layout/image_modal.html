@@ -1,0 +1,14 @@
+﻿<div class="modal-header">
+    <h4 class="modal-title"><i class="fa fa-cutlery"></i> ::vm.entity.Name::</h4>
+</div>
+<div class="modal-body text-center" style="width:90%; height:60%;">
+    <div class="horizontal">
+        <div class="vertical">
+            <img ng-src="::vm.getImageSrc(vm.entity.FileName)::" class="img-responsive" data-ng-click="vm.close();" />            
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <a class="btn btn-primary" ng-click="vm.close()">Close</a>
+</div>

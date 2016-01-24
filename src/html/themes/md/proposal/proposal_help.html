@@ -1,0 +1,38 @@
+﻿<div>
+    <md-toolbar class="md-warn md-hue-3" >
+        <div class="md-toolbar-tools">
+            <md-button ng-click="vm.toggleSidenav('left')" hide-gt-md aria-label="Menu">
+                <ng-md-icon icon="menu"></ng-md-icon>
+            </md-button>
+            <strong>What?</strong> &nbsp;You don't have a craving proposal yet?
+            <span flex></span>
+        </div>
+    </md-toolbar>
+
+    <md-content flex md-scroll-y>
+        <ui-view layout="column" layout-fill layout-padding>
+            <div class="inset" hide-sm></div>
+
+            <div layout="row" layout-align="center center">
+                <md-card flex-gt-sm="90" flex-gt-md="80" flex="95" >
+                    <md-card-content>
+                        <h3>Craving Proposal</h3>
+                        <p>A simple design to help you communicate with your friends and made decision on where to eat with a group.</p>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Following these steps to use <b>Craving Proposal</b></div>
+
+                            <table class="table">
+                                <tr><td><span class="badge">1</span> <span>Find a dish you are craving for.</span></td></tr>
+                                <tr><td><span class="badge">2</span> <span>Add it to the <b>Craving Proposal</b>.</span></td></tr>
+                                <tr><td><span class="badge">3</span> <span>Repeat step 1 and 2 until you have a few options.</span></td></tr>
+                                <tr><td><span class="badge">4</span> <span>Open <b>Craving Proposal</b> and send the proposal uinique URL to your friends.</span></td></tr>
+                                <tr><td><span class="badge">5</span> <span>Your friends will vote and make decision together.</span></td></tr>
+                            </table>
+                        </div>
+
+                    </md-card-content>
+                </md-card>
+            </div>
+        </ui-view>
+    </md-content>
+</div>

@@ -1,0 +1,89 @@
+﻿<div>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h1>{{vm.restaurantName}}</h1>
+        </div>
+    </md-toolbar>
+
+    <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+        <div class="md-toolbar-tools">
+            <h5 class="md-flex">{{vm.message}}</h5>
+        </div>
+    </md-toolbar>
+
+    <div md-scroll-y ng-show="vm.isValid" class="restaurant-content-container">
+        <section class="restaurant-section">
+            <h3 class="md-title">
+                You can fullfill these cravings here:
+            </h3>
+            <md-card layout-padding layout-align="center start" flex layout="row">
+                <md-list id="restaurant-cravings">
+                    <md-list-item class="repeated-item md-whiteframe-2dp"
+                                  ng-repeat="c in vm.cravings" ng-class="{selected: vm.isCravingSelected(c)}">
+                        <md-checkbox aria-label="{{c.CravingTag}}"
+                                     class="md-accent md-raised"
+                                     ng-checked="vm.isCravingSelected(c)"
+                                     ng-click="vm.selectCraving(c)">
+                            {{c.CravingTag}}
+                            <span class="badge">{{c.DishCount}}</span>
+                        </md-checkbox>
+                    </md-list-item>
+                </md-list>
+            </md-card>
+        </section>
+
+        <section class="restaurant-section">
+            <h3 class="md-title">Dishes</h3>
+            <md-card layout-padding layout-align="center start" flex>
+                <md-list>
+                    <md-list-item class="md-3-line" ng-repeat="item in vm.dishes | filter: vm.filterDish">
+                        <img ng-src="{{vm.getPreviewImage(item.DishImageFileName)}}" class="img-dish" alt="{{item.Name}}" />
+                        <div class="md-list-item-text" layout="column">
+                            <h3><a ui-sref="dish.detail({id: item.DishId})">{{ item.Name }}</a></h3>
+                            <h4>Rating: {{item.Rating}} </h4>
+                            <p>{{item.Description | limitTo: 60}} {{item.Description.length > 60 ? '...' :''}}</p>
+                        </div>
+                    </md-list-item>
+                </md-list>
+            </md-card>
+        </section>
+
+        <section class="restaurant-section">
+            <h3 class="md-title">Location</h3>
+            <md-card layout-padding layout-align="center start" flex class="map-wrapper">
+                <ui-gmap-google-map center="vm.map.center" zoom="vm.map.zoom" draggable="true" options="vm.map.options" control="vm.map.control">
+                    <ui-gmap-marker options="vm.map.userMarker.options"
+                                    coords="vm.map.userMarker.coords" icon="vm.map.userMarker.icon"
+                                    events="vm.map.userMarker.events" idkey="vm.map.userMarker.id"></ui-gmap-marker>
+                    <ui-gmap-markers models="vm.map.markers" coords="'coords'" icon="'icon'" options="'options'" events="'events'" modelsbyref="true">
+                    </ui-gmap-markers>
+                </ui-gmap-google-map>
+            </md-card>
+
+            <md-card layout-padding layout-align="center start" flex class="scrollable-content">
+                <b>We found {{vm.restaurants.length}} locations in your city</b>
+
+                <md-divider></md-divider>
+
+                <div class="grid-tiles">
+                    <div data-ng-repeat="r in vm.restaurants"
+                         data-ng-click="vm.locate(r);"
+                         ng-class="{selected_grid_item: item.isSelected}"
+                         class="panel panel-default card grid-item">
+                        <div class="panel-heading" title="{{r.name}}">
+                            <div class="numberCircle" ng-class="{active: r.isSelected}">{{r.placeIndex}}</div>
+                            <h5 class="panel-title">{{r.address}}</h5>
+                            <span>Tel: {{r.tel}}</span>
+                        </div>
+                        <div class="panel-body">
+                            <h5>Open Hours</h5>
+                            <p>{{r.hours_display}}</p>
+                            <p data-ng-show="r.hours_display == undefined || r.hours_display == ''">Ah, sorry, we have no idea about it.</p>
+                        </div>
+                    </div>
+                </div>
+            </md-card>
+        </section>
+
+    </div>
+</div>

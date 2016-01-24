@@ -1,0 +1,29 @@
+﻿<div flex id="home-container" class="scrollable-content">
+    <div id="home-header">
+        <h3 class="md-display-1" hide-sm>What are you craving for?</h3>
+        <h3 hide-gt-sm>What are you craving for?</h3>
+    </div>
+
+    <div id="search-box">
+        <div ng-include="'craving/search.bar.html'"></div>
+    </div>
+
+    <div layout-padding layout-align="center start" layout-fill layout="row" flex style="padding-top: 20px;">
+        <md-list>
+            <md-list-item class="repeated-item" ng-repeat="c in vm.cravings | orderBy">
+                <md-button class="md-raised" data-ng-click="vm.search(c)" ng-class="vm.cravingStyles[$index]">{{c}}</md-button>
+            </md-list-item>
+        </md-list>
+    </div>
+    
+    <div class="home-bottom-container">
+        <md-button style="width:96%; display:block" ng-click="vm.loadMore();" ng-show="vm.hasMore"> More... </md-button>
+        
+        <div class="random-restaurant-container" ng-controller="SingleRandomRestaurantController as ctl"
+             layout-sm="column"
+             ng-show="ctl.restaurant != undefined">
+            <span>try this restaurant: </span>
+            <a ui-sref="restaurant.home({id: ctl.restaurant.Id})">{{ctl.restaurant.Name}}</a>
+        </div>
+    </div>
+</div>

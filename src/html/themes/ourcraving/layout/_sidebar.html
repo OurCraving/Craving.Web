@@ -1,0 +1,31 @@
+<aside class="sidebar{% if sidebarOptions %} [[ sidebarOptions ]]{% endif %}" {% if sidebarData %} [[ sidebarData ]] {% endif %}>
+    <div data-scrollable>
+        <h4 class="category">My Cravings</h4>
+        <ul class="sidebar-menu sm-bordered sm-icons-block sm-icons-right">
+            <li class="hasSubmenu" ng-class="{ 'open active': $state.includes('detail.dish') }" data-ng-controller="RecentDishController as vm">
+                <a href="#discover"><i class="fa fa-star"></i><span>Recent</span></a>
+                <ul id="discover" ng-class="{ 'in': $state.includes('detail.dish') }">
+                    <li data-ng-repeat="d in vm.dishes"
+                        ng-class="{ 'active': vm.isCurrent(d) }">
+                        <a data-ng-click="vm.openDish(d);" class="clickable"><span>::d.Name::</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li ng-class="{ 'active': $state.is('dish.add') }"><a ui-sref="dish.add"><i class="fa fa-pencil"></i><span>Add Dish</span></a></li>
+            <li ng-class="{ 'active': $state.is('proposal.home') }"><a ui-sref="proposal.home"><i class="fa fa-bookmark "></i><span>Craving Proposal</span></a></li>
+        </ul>
+        <div class="absolute bottom ">
+            <h4 class="category">Help</h4>
+            <div class="sidebar-block">
+                <ul class="sidebar-menu small">
+                    <li>
+                        <a ui-sref="help.faq"><span>FAQ</span></a>
+                    </li>
+                    <li>
+                        <a href="../html/index.html"><span>Supported Cities</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</aside>

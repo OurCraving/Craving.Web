@@ -1,0 +1,42 @@
+﻿@right-iterations: 300;
+@padding-iterations: 15;
+@top-iterations: 20;
+
+.spacing-h-class(@prefix, @property, @index: 15) when (@index >= 0) {
+	@class: ~".@{prefix}-@{index}";
+	&@{class} {
+		@{property}-left: ~"@{index}px" !important;
+		@{property}-right: ~"@{index}px" !important;
+	}
+	.spacing-h-class(@prefix, @property, @index, 10);
+	.spacing-h-class(@prefix, @property, @index - 1);
+}
+
+.spacing-h-class(@prefix, @property, @size1: 15, @size2: 15) when (@size1 = @size2) {
+	.spacing-h-class(@prefix, @property, @size1, @size2 - 1);
+}
+
+.top-loop (@i) when (@i>0) {
+    .top-@{i} {
+        top: ~"@{i}px";
+    }
+
+    .top-loop(@i - 5);
+}
+
+.right-loop (@i) when (@i>0) {
+    .right-@{i} {
+        right: ~"@{i}px";
+    }
+
+    .right-loop(@i - 20);
+}
+
+.padding-loop (@i) when (@i > 0) {
+    .padding-@{i} {
+        padding: ~"@{i}px";
+    }
+
+    .padding-loop(@i - 3);
+}
+

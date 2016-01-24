@@ -1,0 +1,127 @@
+﻿@columnGap: 5px;
+
+.column-items-wrapper-8 {
+    background-color: #fff;
+    border: 1px solid #e2e9e6;
+    margin-bottom: 20px;
+    -webkit-columns: 8 120px;
+    -moz-columns: 8 120px;
+    columns: 8 120px;
+    -webkit-column-gap: @columnGap;
+    -moz-column-gap: @columnGap;
+    column-gap: @columnGap;
+
+    .column-item {
+        padding: 16px;
+        display: inline-block;
+        position: relative;
+        -webkit-column-break-inside: avoid;
+        -moz-column-break-inside: avoid;
+        -o-column-break-inside: avoid;
+        -ms-column-break-inside: avoid;
+        -webkit-backface-visibility: hidden;
+    }
+}
+
+@media (min-width: 992px) {
+    .column-items-wrapper-8 .column-item {
+        border-right: 1px solid #eeeeee;
+    }
+
+    .column-items-wrapper-8 .column-item:last-of-type {
+        border-right: none;
+    }
+}
+
+.row {
+    &.grid-tiles {
+        margin: 15px 5px !important;
+    }
+}
+
+.card {
+    &.grid-item {
+        cursor: pointer;
+    }
+}
+
+.grid-item {
+    width: 280px;
+    height: auto;
+    margin-right: 0px;
+    margin-left: 10px;
+
+    h5 {
+        font-weight: 600;
+        font-size: 14px;
+        display: inline-block;
+    }
+
+    .panel-body {
+        padding: 5px;
+    }
+
+    .panel-heading {
+        padding: 5px 10px;
+    }
+}
+
+.selected_grid_item {
+    border: 1px solid #9474CC !important;
+    color: #9474CC;
+}
+
+/*used in map-editor*/
+.cuisine-container {
+    & ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0 -5px;
+        -webkit-padding-start: 0px;
+    }
+
+    .cuisine-item {
+        padding: 0 2px 0 5px;
+        font-size: 75%;
+    }
+}
+
+@media (min-width: 992px) {
+    .cuisine-container {
+        .cuisine-item {
+            border-right: 1px solid #eee;
+            display: inline-block;
+        }
+
+        .cuisine-item:last-of-type {
+            border-right: none;
+        }
+    }
+}
+
+.numberCircle {
+    border-radius: 50%;
+    behavior: url(PIE.htc);
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    display: inline-block;
+    background: #000;
+    border: 2px solid #666;
+    color: #fff;
+    text-align: center;
+    font: 11px Arial, sans-serif;
+
+    &.active {
+        background: #FF0000;
+        color: #333;
+    }
+}
+
+.pagination {
+    a {
+        cursor: pointer;
+    }
+}
+
+

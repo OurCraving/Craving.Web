@@ -1,0 +1,50 @@
+<!-- Sign up -->
+<li class="dropdown" data-ng-show="vm.showSignup">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-fw fa-plus"></i> Sign Up
+    </a>
+    <div class="dropdown-menu dropdown-size-280" data-ng-controller="AccountSignupController as avm">
+        <form>
+            <!--<div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group form-control-default">
+                            <label for="exampleInputFirstName">First name</label>
+                            <input type="email" class="form-control" id="exampleInputFirstName" placeholder="Your first name">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group form-control-default">
+                            <label for="exampleInputLastName">Last name</label>
+                            <input type="email" class="form-control" id="exampleInputLastName" placeholder="Your last name">
+                        </div>
+                    </div>
+                </div>-->
+            <div id="message_panel" data-ng-show="avm.message!=''"
+                 data-ng-class="(avm.savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                <span>::avm.message::</span>
+            </div>
+            <div class="form-group form-control-default required">
+                <label for="registerEmail">Email address</label>
+                <input type="email" class="form-control" id="registerEmail" placeholder="Enter email" data-ng-model="avm.registration.email" 
+                       required ui-keypress="{enter:'avm.submit($event)'}">
+            </div>
+            <div class="form-group form-control-default required">
+                <label for="registerPassword">Password</label>
+                <input type="password" class="form-control" id="registerPassword" placeholder="Password" data-ng-model="avm.registration.password"
+                       required ui-keypress="{enter:'avm.submit($event)'}">
+            </div>
+            <div class="form-group form-control-default required">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" data-ng-model="avm.registration.confirmPassword"
+                       required ui-keypress="{enter:'avm.submit($event)'}">
+            </div>
+            <ul class="small description">
+                <li>Once you register, you will receive an email to activate your account.</li>
+                <li>Your password is encrypted in our database. We take privacy very seriously.</li>
+                <li>If register, you are assumed to agree with our <a href="/termsconditions" target="_blank">Terms and Condition</a>.</li>
+            </ul>
+            <button type="submit" class="btn btn-primary" data-ng-click="avm.submitRegistration">Submit</button>
+        </form>
+    </div>
+</li>
+<!-- // END sign up -->

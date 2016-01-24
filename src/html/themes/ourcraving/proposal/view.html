@@ -1,0 +1,60 @@
+﻿{% include "src/html/themes/ourcraving/layout/_layout_2_cover.html" %}
+<div class="container" data-ng-hide="vm.selectedProposal == undefined">
+    <h1 class="text-h2">::vm.getProposalTitle(vm.selectedProposal)::</h1>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h4>Owner: <span class="strong">::vm.selectedProposal.CreatorName::</span></h4>
+            <p>
+                <span class="label label-grey-100">Created on: ::vm.formateDate(vm.selectedProposal.CreatedDate):: </span>
+                <span class="label label-grey-200" data-ng-show="vm.selectedProposal.IsExpired == true">Expired</span>
+            </p>
+        </div>
+    </div>
+
+    <div id="message_panel" data-ng-show="vm.message!=''" data-ng-class="(vm.savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+        <span>::vm.message::</span>
+    </div>
+    
+    <h4 class=" text-h4" data-ng-show="vm.selectedProposal.IsExpired == false">Options</h4>
+    <div class="alert alert-info" role="alert" data-ng-show="vm.selectedProposal.Items.length == 0 ">
+        <strong>Snap,</strong> your craving proposal has no option yet. <br />
+        Find some craving dishes and add them to the proposal.<br />
+        Then generate a single URL to discuss with your friends.
+    </div>
+    <div class="panel panel-default" data-ng-show="vm.selectedProposal.Items.length > 0 && vm.selectedProposal.IsExpired == false" data-ng-repeat="item in vm.selectedProposal.Items">
+        <div class="panel-heading">
+            <div class=" row">
+                <div class="col-sm-12">
+                    <h4 class="media-heading margin-v-0-10 strong">
+                        ::item.RestaurantName::
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <a class="text-subhead" ui-sref="detail.dish({id: item.DishId})" title="Dish you might be interested">
+                        ::item.DishName::
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body row">
+            <div class="col-sm-6">
+                <div class="checkbox checkbox-primary margin-none">
+                    <input id="::'chkVote' + $index::" type="checkbox" data-ng-model="vm.votes[item.RestaurantId]" data-ng-change="vm.voteItem(item);">
+                    <label for="::'chkVote' + $index::">I want to eat there</label>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <strong class="text-h5">Votes:</strong>
+                <span class="fa fa-user fa-fw" data-ng-repeat="i in vm.getIterations(item.Votes.length)"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" data-ng-hide="vm.selectedProposal != undefined">
+    <div class="alert alert-danger" role="alert">
+        <strong>Oh snap!</strong> The proposal you want to open doesn't exist!
+    </div>
+</div>

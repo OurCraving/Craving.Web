@@ -1,0 +1,97 @@
+﻿<div class="split-vertical">
+    <div class="sidebar-block equal-padding">
+        <div class="media">
+            <div class="media-left">
+                <img ng-src="::vm.getDinerImage(vm.diner.Avatar)::" alt="::vm.diner.DisplayName::" class="img-circle media-object" width="80" />
+            </div>
+            <div class="media-body">
+                <div class="pull-right">
+                    <a data-ng-click="vm.close();" class="btn btn-white btn-lg"><i class="fa fa-times-circle fa-2x"></i></a>
+                </div>
+                <h3 class="margin-bottom-none">::vm.diner.DisplayName::</h3>
+                <p class="text-h5">
+                    Member since: ::vm.getMemberSince(vm.diner)::
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="split-vertical-body">
+        <h4 class="category">Recently Craved For:</h4>
+        <div class="property-meta border-bottom" data-ng-show="vm.recentCravings.length > 0">
+            <ul>
+                <li class="property-meta-item" data-ng-repeat="c in vm.recentCravings">
+                    <a ui-sref="app.home.search({criteria: c.CravingTag})" class="text-muted">
+                        ::c.CravingTag::
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="property-meta border-bottom padding-h-15" data-ng-show="vm.recentCravings.length == 0">
+            No craving records yet...
+        </div>
+
+        <h4 class="category">Dislike:</h4>
+        <div class="property-meta border-bottom" data-ng-show="vm.dislikes.length > 0">
+            <ul>
+                <li class="property-meta-item" data-ng-repeat="c in vm.dislikes">
+                    <a ui-sref="app.home.search({criteria: c.CravingTag})" class="text-muted">
+                        ::c.CravingTag::
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="property-meta border-bottom padding-h-15" data-ng-show="vm.dislikes.length == 0">
+            Ah, <strong>::vm.diner.DisplayName::</strong> eats everything!
+        </div>
+
+        <h4 class="category">Recently Added Dishes: </h4>
+        <div class="sidebar-block">
+            <div class="expandable expandable-indicator-white expandable-trigger" data-ng-show="vm.recentDishes.length > 0">
+                <div class="expandable-content">
+                    <div class="panel panel-default" data-ng-repeat="dish in vm.recentDishes">
+                        <div class="panel-body">
+                            <a ui-sref="detail.dish({id: dish.DishId})" title="open the detail of this dish" target="_blank">::dish.Name::</a>
+                            <p>::dish.RestaurantName::</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-ng-show="vm.recentDishes.length == 0">
+                Ah, <strong>::vm.diner.DisplayName::</strong> has not added any dish in here.
+            </div>
+        </div>
+
+        <h4 class="category">Recently Reviewed:</h4>
+        <div class="sidebar-block">
+            <div class="expandable expandable-indicator-white expandable-trigger" data-ng-show="vm.recentReviews.length > 0">
+                <div class="expandable-content">
+                    <div class="panel-body">
+                        <section data-ng-repeat="r in vm.recentReviews">
+                            <div class="media">
+                                <div class="row">
+                                    <div class="col-sm-8 col-xs-4">
+                                        <a ui-sref="detail.dish({id: r.DishId})" title="Open dish detail" target="_blank">::r.DishName::</a>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-4">
+                                        <h5 class="media-heading margin-v-5"><rating data-ng-model="r.Rating" max="5" readonly="true" state-off="'none'"></rating></h5>
+                                    </div>
+                                    <div class="col-sm-2 col-xs-4">
+                                        <small class="text-grey-400 pull-right">::vm.formateDate(r.PostDate)::</small>
+                                    </div>
+                                </div>
+                                <div class="row media-body">
+                                    <p class="margin-none">::r.Review::</p>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <section class="panel panel-default" data-ng-show="vm.recentReviews.length == 0">
+                <div class="panel-body">
+                    Ah, <strong>::vm.diner.DisplayName::</strong> has not reviewed any dish here.
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

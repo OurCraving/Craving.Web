@@ -1,0 +1,116 @@
+﻿<md-card class="md-whiteframe-z3 no-margin">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Add a Craving Dish</h2>
+            <span flex></span>
+            <md-button class="md-fab md-mini" id="bt-openMap" ng-click="vm.openMap();" hide-gt-sm>
+                <md-tooltip>
+                    Show nearby restaurants on map
+                </md-tooltip>
+                <ng-md-icon icon="map"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-toolbar ng-show="vm.message!=''" ng-class="vm.savedSuccessfully? 'md-success': 'md-warn'">
+        <div class="md-toolbar-tools">
+            <h5 class="md-flex">{{vm.message}}</h5>
+        </div>
+    </md-toolbar>
+
+    <div layout="column" layout-padding layout-margin ng-show="vm.showAddDish">
+        <p>Found a lovely dish? Share your joy with the world!</p>
+        <form name="dishForm" ng-submit="vm.submit();">
+            <md-input-container>
+                <label>Where did you find it?</label>
+                <input name="restaurantName" ng-model="vm.dish.restaurant.name" required flex>
+                <div ng-messages="dishForm.restaurantName.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+            </md-input-container>
+
+            <div ng-hide="vm.dish.restaurant.name!=undefined">
+                <span class="small" hide-sm>
+                    <ng-md-icon icon="arrow_back" size="20"></ng-md-icon>
+                    select a restaurant from the map
+                </span>
+
+                <span class="small" hide-gt-sm>
+                    <ng-md-icon icon="arrow_back" size="20"></ng-md-icon>
+                    <a class="clickable" ng-click="vm.openMap();">select a restaurant from the map</a>
+                </span>
+            </div>
+
+            <md-input-container flex>
+                <label>What is the dish called?</label>
+                <input ng-model="vm.dish.name" required name="dishName" dish-duplication-check="vm.dish.restaurant.name">
+                <div ng-messages="dishForm.dishName.$error">
+                    <div ng-message="required">This is required.</div>
+                    <div ng-message="dishDuplicationCheck">This dish has existed for this restaurant.</div>
+                </div>
+            </md-input-container>
+            
+            <md-input-container flex>
+                <label>Is there any description?</label>
+                <input ng-model="vm.dish.description" name="dishDescription">
+            </md-input-container>
+
+            <div class="inset" hide-sm></div>
+
+            <div flex>
+                <label>Craving Tags</label>
+                <craving-select selected-craving="vm.dish.selectedCravings"></craving-select>
+                <p class="small">These tags help people match their cravings with the dish.</p>
+            </div>
+            
+            <div class="inset" hide-sm></div>
+
+            <div flex layout="column">
+                <label>How do you feel about it?</label>
+                <div layout>
+                    <rating data-ng-model="vm.dish.rating" max="vm.maxRating"
+                            on-hover="vm.hoveringOver(value)" id="rating"
+                            on-leave="vm.hoveringLeave()"></rating>
+                    <div flex>
+                        <span class="label"
+                              data-ng-class="{'label-warning': vm.percent<30, 'label-info': vm.percent>=30 && vm.percent<70, 'label-success': vm.percent>=70}"
+                              data-ng-show="vm.overStar !== null || vm.showReviewBox === true">{{vm.ratingLabel}}</span>
+                    </div>
+                </div>
+            </div>
+            <md-input-container data-ng-show="vm.showReviewBox">
+                <label>Do you want to share more about it?</label>
+                <textarea rows="2" id="review"
+                          data-ng-model="vm.dish.review"></textarea>
+            </md-input-container>
+            <div class="inset" hide-sm></div>
+            <div layout="column">
+                <label>Do you have an image of it?</label>
+                <file-field ng-model="vm.dish.uploadImage"
+                            ng-class="{'md-success':previewImage}" preview="previewImage"
+                            on-file-read="vm.onFileRead(file, content);">Select a photo of this dish</file-field>
+                <div data-ng-show="vm.dish.uploadImage != ''" class="uploadPreviewContainer">
+                    <img ng-src="{{previewImage}}" >
+                </div>
+                <md-button data-ng-show="vm.dish.uploadImage != ''" class="md-warn md-raised" data-ng-click="vm.resetUpload(); previewImage=null;"> Forget it </md-button>
+            </div>
+
+            <div layout layout-align="end center">
+                <span flex></span>
+                <md-button type="submit" class="md-primary md-raised" ng-disable="vm.isBusy">Save</md-button>
+            </div>
+        </form>
+    </div>
+
+    <div layout="column" layout-padding layout-margin ng-hide="vm.showAddDish">
+        <h4>Thank you for adding the dish!</h4>
+        <div class="md-padding md-whiteframe-z1" layout="column">
+            <div>The dish you just added: <strong>{{vm.dish.name}}</strong> </div>
+            <div>at restaurant: <strong>{{vm.dish.restaurant.name}}</strong></div>
+            <div>Your dish is added to our system and displayed to the world immediately, because we totally trust your valuable content. After all, people love to eat must be nice people. </div>
+            <md-divider></md-divider>
+            <h4>Do you have another loving dish to add?</h4>
+            <md-button class="md-accent md-raised" data-ng-click="vm.resetAddDish()">Add Another Dish</md-button>
+        </div>
+    </div>
+</md-card>

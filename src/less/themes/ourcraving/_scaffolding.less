@@ -1,0 +1,44 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600|Open+Sans:400,600,300|Arapey|Varela+Round);
+
+body {
+	font-family: @font-family-open-sans;
+}
+
+li > a {
+	font-family: @font-family-varela;
+	letter-spacing: -0.2px;
+}
+
+p {
+	font-weight: 300;
+	font-family: @font-family-source-sans;
+	.cover & {
+		font-weight: 400;
+		&.lead {
+			font-weight: 300;
+		}
+	}
+}
+
+.lead {
+	font-family: @font-family-source-sans;
+}
+
+h1, h2, h3,
+h4, h5, h6,
+.h1, .h2, .h3,
+.h4, .h5, .h6 {
+	letter-spacing: -0.2px;
+	small {
+		font-family: @font-family-varela;
+		font-size: 60%;
+		letter-spacing: -0.2px;
+	}
+}
+
+.navbar-brand {
+	font-weight: 600;
+	letter-spacing: -0.7px;
+	font-family: @font-family-source-sans;
+	font-size: 21px !important;
+}

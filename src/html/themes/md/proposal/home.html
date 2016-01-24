@@ -1,0 +1,35 @@
+﻿<div layout="row" layout-fill>
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+        <md-toolbar class="md-hue-2">
+            <span flex></span>
+            <div layout="column" class="md-toolbar-tools-bottom inset">
+                <h4>Craving Proposals</h4>
+            </div>
+        </md-toolbar>
+        <md-subheader>Active Proposals</md-subheader>
+        <md-list>
+            <md-item data-ng-repeat="p in vm.proposals| filter: vm.filterByExpiration" class="list-group-item">
+                <md-item-content md-ink-ripple layout-align="start center">
+                    <a ui-sref="proposal.home.detail({key:p.Key})">{{vm.getProposalTitle(p)}} 
+                    </a>
+                    <span flex></span>    
+                    <ng-md-icon icon="chevron_right" ng-show="vm.checkActive(p) == 'active'" size="16"></ng-md-icon>
+                    <span class="badge">{{p.TotalItems}}</span>
+                </md-item-content>
+            </md-item>
+        </md-list>
+        <md-subheader>Expired Proposals</md-subheader>
+        <md-list>
+            <md-item data-ng-repeat="p in vm.proposals| filter: vm.filterByActive" class="list-group-item">
+                <md-item-content md-ink-ripple layout-align="start center">
+                    <a ui-sref="proposal.home.detail({key:p.Key})">{{vm.getProposalTitle(p)}}</a>
+                    <span flex></span>  
+                    <ng-md-icon icon="chevron_right" ng-show="vm.checkActive(p) == 'active'" size="16"></ng-md-icon>
+                    <span class="badge">{{p.TotalItems}}</span>
+                </md-item-content>
+            </md-item>
+        </md-list>
+    </md-sidenav>
+
+    <div layout="column" flex role="main" data-ng-include="vm.proposals.length == 0 ? 'proposal/proposal_help.html': 'proposal/proposal_current.html' "></div>
+</div>

@@ -1,0 +1,41 @@
+﻿{% include "src/html/themes/ourcraving/layout/_layout_2_cover.html" %}
+<div class="container" access="moderator,admin">
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation" data-ng-class="vm.checkActive('dishes')">
+                    <a ui-sref="admin.home.detail({selected:'dishes'})" ui-sref-opts="{ reload: true }">Recent Dishes</a>
+                </li>
+                <li role="presentation" data-ng-class="vm.checkActive('reviews')">
+                    <a ui-sref="admin.home.detail({selected:'reviews'})" ui-sref-opts="{ reload: true }">Recent Reviews</a>
+                </li>
+                <li role="presentation" data-ng-class="vm.checkActive('users')">
+                    <a ui-sref="admin.home.detail({selected:'users'})" ui-sref-opts="{ reload: true }">Recent Users</a>
+                </li>
+                <li role="presentation" data-ng-class="vm.checkActive('files')">
+                    <a ui-sref="admin.home.detail({selected:'files'})" ui-sref-opts="{ reload: true }">Recent Files</a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="col-md-9 panel panel-default ">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li>Administration</li>
+                    <li class="active">::vm.title::</li>
+                </ol>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div ng-include="vm.selectedItemPage"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" access="moderator, admin" reverse=" true" >
+    <h1>Top secrete page</h1>
+    <h3>Your attempt has been logged and reported. </h3>
+    <h3>Please sit back and wait for a phone call from our security department. ;)</h3>
+</div>

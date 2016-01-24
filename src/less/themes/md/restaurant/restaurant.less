@@ -1,0 +1,51 @@
+﻿
+/*
+    not sure why this exists in the material css. 
+    have to overwrite it 
+*/
+md-list-item > div.md-primary > md-checkbox .md-label, md-list-item > div.md-secondary > md-checkbox .md-label, md-list-item > md-checkbox:first-child .md-label, md-list-item md-checkbox.md-secondary .md-label, md-list-item .md-list-item-inner > div.md-primary > md-checkbox .md-label, md-list-item .md-list-item-inner > div.md-secondary > md-checkbox .md-label, md-list-item .md-list-item-inner > md-checkbox:first-child .md-label, md-list-item .md-list-item-inner md-checkbox.md-secondary .md-label {
+    display: block;
+}
+
+#restaurant-cravings {
+    .repeated-item {
+        width: auto;
+        min-width: 150px;
+        padding: 2px 4px;
+        display: inline-block;
+        background-color: #C5E1A5;
+        margin: 2px 5px;
+
+        .md-label {
+            min-width: 100px;
+            width: auto;
+
+            .badge {
+                margin-left: 5px;
+            }
+        }
+    }
+
+    .selected {
+        background-color: #EF9A9A;
+        /*color:white;*/
+    }
+}
+
+.restaurant-content-container {
+    text-align:center;
+}
+
+.restaurant-section {
+    width: 60%;
+    margin: 10px 20%;
+    text-align:justify;
+}
+
+
+@media (max-width: 900px) {
+    .restaurant-section {
+        width: 95%;
+        margin: 10px 20px;
+    }
+}

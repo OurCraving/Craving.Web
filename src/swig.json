@@ -1,0 +1,79 @@
+{
+	"site": {
+		"name": "Our Craving",
+		"version": "1.0.0",
+		"description": "Connect food lovers with cravings",
+		"author": "CravingConnect.co",
+		"email": "info@cravingconnect.co"
+	},
+	"css_vendor": [
+		"vendor/bootstrap",
+		"vendor/font-awesome",
+		"vendor/picto",
+		"vendor/material-design-iconic-font",
+		"vendor/datepicker3",
+		"vendor/jquery.minicolors",
+		"vendor/bootstrap-slider",
+		"vendor/railscasts",
+		"vendor/jquery-jvectormap",
+		"vendor/owl.carousel",
+		"vendor/slick",
+		"vendor/morris",
+		"vendor/ui.fancytree",
+		"vendor/daterangepicker-bs3",
+		"vendor/jquery.bootstrap-touchspin",
+		"vendor/select2"
+	],
+	"js_vendor": [
+		{
+			"name": "vendor/core/all",
+			"themes": []
+		},
+		"vendor/core/jquery",
+		"vendor/core/bootstrap",
+		"vendor/core/breakpoints",
+		"vendor/core/jquery.nicescroll",
+		"vendor/core/isotope.pkgd",
+		"vendor/core/packery-mode.pkgd",
+		"vendor/core/jquery.grid-a-licious",
+		"vendor/core/jquery.cookie",
+		"vendor/core/jquery-ui.custom",
+		"vendor/core/jquery.hotkeys",
+		"vendor/core/handlebars",
+		"vendor/core/jquery.hotkeys",
+		"vendor/core/load_image",
+		"vendor/core/jquery.debouncedresize",
+		"vendor/forms/all",
+		"vendor/media/all",
+		{
+			"name": "vendor/angular/all",
+			"themes": ["angular", "ourcraving"]
+		}
+	],
+	"js_modules": [
+		"app/essentials",
+		"app/layout",
+		"app/sidebar",
+		"app/media",
+		"app/maps"
+	],
+	"css_modules": [
+		"app/essentials",
+		"app/layout",
+		"app/sidebar",
+		"app/sidebar-skins",
+		"app/navbar",
+		"app/media",
+		"app/maps",
+		"app/colors-buttons",
+		"app/colors-text"
+	],
+	"js_theme_core": [
+		"html",
+		"angular",
+	  	"rtl",
+	  	"choose",
+		"docs",
+		"ourcraving"
+	]
+}

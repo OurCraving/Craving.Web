@@ -1,0 +1,176 @@
+﻿.groupX {
+    font-size: 16px;
+    margin: 20px 0;
+    min-width: 100px;
+
+    .md-button {
+        width: auto;
+        min-width: initial;
+    }
+
+    .md-button .dropmenu {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    md-menu {
+        padding: 0;
+    }
+}
+
+.md-button.left {
+    border-radius: 10px 0 0 10px;
+}
+
+.md-button.middle {
+    border-radius: 0;
+    border-left: 1px solid rgba(230, 230, 230, 0.96);
+    border-right: 1px solid rgba(230, 230, 230, 0.96);
+}
+
+.md-button.right {
+    border-radius: 0 10px 10px 0;
+}
+
+.small-inline {
+    display: inline;
+    font-size: 0.8em;
+}
+
+.tag-list {
+    margin-top: 0px;
+    margin-bottom: 0;
+
+    span {
+        border-radius: 16px;
+        line-height: 32px;
+        background: rgb(244,244,244);
+        float: left;
+        padding: 0 12px;
+        margin: 8px 8px 0 0;
+        height: 32px;
+        max-width: 100%;
+        width: auto;
+        white-space: nowrap;
+        cursor: pointer;
+    }
+
+    span:hover {
+        background: rgb(16,108,200);
+
+        & a {
+            color: white;
+        }
+    }
+}
+
+.img-dish-preview {
+    max-height: 280px;
+}
+
+.pull-right-button {
+    min-width: 36px;
+    margin: 0 5px;
+}
+
+.small {
+    font-size: 11px;
+}
+
+.favor-icon {
+    fill: #D93939;
+    -webkit-transition: transform 200ms ease-out;
+    -moz-transition: transform 200ms ease-out;
+    -ms-transition: transform 200ms ease-out;
+    -o-transition: transform 200ms ease-out;
+    transition: transform 200ms ease-out;
+    margin: 0 11px 0 0;
+    border-radius: 3px;
+    text-decoration: none;
+    box-shadow: none;
+
+    &:hover {
+        -webkit-transform: scale(1.15);
+        -moz-transform: scale(1.15);
+        -ms-transform: scale(1.15);
+        -o-transform: scale(1.15);
+        transform: scale(1.15);
+    }
+}
+
+.uploadPreviewContainer {
+    width: 230px;
+    border: 1px solid #403B3B;
+    margin: 5px 10px;
+
+    & img {
+        width: 100%;
+        max-height: 100%;
+        margin: auto;
+        display: block;
+    }
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.scrollable-content {
+    height: auto;
+    width: 100%;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 6px;
+        border-radius: 6px;
+        background: rgba(66,66,66,0.8);
+        -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.5);
+    }
+
+    &::-webkit-scrollbar-thumb:window-inactive {
+        background: rgba(99,99,99,0.4);
+    }
+}
+
+.img-fit {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.text-center {
+    padding: 10px 0 0;
+    text-align: center;
+}
+
+.dishName {
+    text-transform: uppercase;
+}
+
+.reviewContainer {
+    margin: 10px 10px 10px 5px;
+    border: 1px solid #eee;
+}
+
+.reviewer-title {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.review-date {
+    font-size: 12px;
+    color: rgba(99,99,99,0.4);
+}
+
+.review-body {
+    font-size: 14px;
+}

@@ -1,0 +1,124 @@
+﻿.map-wrapper {
+    height: 360px;
+    margin: 0;
+    width: 100%;
+    position: relative;
+}
+
+.angular-google-map-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.numberCircle {
+    border-radius: 50%;
+    behavior: url(PIE.htc);
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    display: inline-block;
+    background: #000;
+    border: 2px solid #666;
+    color: #fff;
+    text-align: center;
+    font: 11px Arial, sans-serif;
+
+    &.active {
+        background: #FF0000;
+        color: #333;
+    }
+}
+
+/*used in map-editor*/
+.cuisine-container {
+    & ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0 -5px;
+        -webkit-padding-start: 0px;
+    }
+
+    .cuisine-item {
+        padding: 0 2px 0 5px;
+        font-size: 75%;
+    }
+}
+
+.card-header {
+}
+
+@media (min-width: 992px) {
+    .cuisine-container {
+        .cuisine-item {
+            border-right: 1px solid #eee;
+            display: inline-block;
+        }
+
+        .cuisine-item:last-of-type {
+            border-right: none;
+        }
+    }
+}
+
+.grid-tiles {
+    margin: 15px 5px !important;
+}
+
+.card {
+    &.grid-item {
+        cursor: pointer;
+    }
+}
+
+.grid-item {
+    width: auto;
+    min-width: 250px;
+    height: auto;
+    margin-right: 3px;
+    margin-left: 3px;
+
+    h5 {
+        font-weight: 600;
+        font-size: 14px;
+        display: inline-block;
+    }
+
+    .panel-body {
+        padding: 5px;
+    }
+
+    .panel-heading {
+        padding: 5px 10px;
+        text-wrap: none;
+        flex-wrap: nowrap;
+    }
+}
+
+.selected_grid_item {
+    border: 1px solid #9474CC !important;
+    color: #9474CC;
+}
+
+.map_search_container {
+
+    margin:0;
+    padding:0;
+
+    & label {
+        font-size: 14px;
+        margin-top:15px;
+        margin-left:0 !important;
+    }
+
+    & input {
+        font-size:14px;
+        margin-top:15px;
+    }
+}
+
+.location-title {
+    font-weight:400; margin-bottom: 10px; margin-left: 20px;
+}
